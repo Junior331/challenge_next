@@ -1,3 +1,4 @@
-export const drivers = () => {
-  return <h2>drivers page</h2>
-}
+'use client'
+import { Drivers } from '@/pages/Drivers/page'
+
+export default Drivers

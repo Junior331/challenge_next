@@ -1,3 +1,4 @@
-export const cars = () => {
-  return <h2>cars page</h2>
-}
+'use client'
+import { Car } from '@/pages/Cars/page'
+
+export default Car

@@ -1,3 +1,4 @@
-export const displacements = () => {
-  return <h2>displacements page</h2>
-}
+'use client'
+import { Displacements } from '@/pages/Displacements/page'
+
+export default Displacements

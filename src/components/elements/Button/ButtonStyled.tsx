@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { StyledButtonProps } from './@types'
 
 export const Button = styled.button<StyledButtonProps>`
@@ -11,10 +11,10 @@ export const Button = styled.button<StyledButtonProps>`
   align-items: center;
   justify-content: center;
   transition: 0.2s color ease;
-  /* color: ${({ theme }) => theme.palette.color.light};
+  color: ${({ theme }) => theme.palette.color.light};
   font-weight: ${({ theme }) => theme.typography.fontWeightBold};
   font-size: ${({ theme }) => theme.typography.fontSizeLight}rem;
-  background-color: ${({ theme }) => theme.palette.color.blue?.default}; */
+  background-color: ${({ theme }) => theme.palette.color.blue?.default};
   width: ${({ size }) => {
     if (size === 'large') {
       return '100%'

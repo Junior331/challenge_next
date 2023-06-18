@@ -1,18 +1,29 @@
-export const Links = [
+import icons from '@/assets/img/icons'
+import { itenSideBarType } from '@/components/modules/SideBar/@types'
+
+export const Links: itenSideBarType[] = [
   {
-    text: 'Clients',
-    router: '/clients',
+    key: 'clients',
+    name: 'Clients',
+    icon: icons.clients,
+    router: '/',
   },
   {
-    text: 'Drivers',
+    key: 'drivers',
+    name: 'Drivers',
+    icon: icons.drivers,
     router: '/drivers',
   },
   {
-    text: 'Displacements',
+    key: 'displacements',
+    name: 'Displacements',
+    icon: icons.displacements,
     router: '/displacements',
   },
   {
-    text: 'Cars ',
+    key: 'cars',
+    name: 'Cars',
+    icon: icons.cars,
     router: '/cars',
   },
 ]
