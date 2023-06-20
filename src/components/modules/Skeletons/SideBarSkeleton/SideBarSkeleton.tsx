@@ -1,6 +1,6 @@
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import * as S from './SideBarSkeletonStyled';
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
+import * as S from './SideBarSkeletonStyled'
 
 const sideBarSkeleton = () => {
   return (
@@ -14,6 +14,6 @@ const sideBarSkeleton = () => {
         <Skeleton variant="rectangular" width={50} height={50} />
       </Stack>
     </S.Container>
-  );
-};
-export default sideBarSkeleton;
+  )
+}
+export default sideBarSkeleton

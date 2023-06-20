@@ -28,7 +28,6 @@ const SideBar = () => {
   const getRoutesSideBar = async () => {
     const response = await getRoutes()
     setRoutes(response)
-    console.log('response ::', response)
     setLoading(false)
   }
 
