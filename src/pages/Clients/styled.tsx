@@ -23,6 +23,7 @@ import {
   indigo,
 } from '@mui/material/colors'
 import { AvatarImageProps } from '../@types'
+import { Form, Formik } from 'formik'
 
 const colorsList = [
   orange[500],
@@ -34,12 +35,12 @@ const colorsList = [
 ]
 
 const StyledAvatar = styled(Avatar)(
-  ({ colorIndex }: { colorIndex: number }) => ({
+  ({ colorindex }: { colorindex: number }) => ({
     width: '100%',
     height: '100%',
     fontWeight: 800,
     fontSize: '2.0rem',
-    backgroundColor: colorsList[colorIndex % colorsList.length],
+    backgroundColor: colorsList[colorindex % colorsList.length],
   }),
 )
 export const ClientsContainer = styled(Container)({
@@ -82,6 +83,20 @@ export const CardContentComponent = styled(CardContent)`
   form {
     width: 100%;
     margin-top: 30px;
+    overflow-y: auto;
+    max-height: 235px;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #a8a8a8;
+    }
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background: #4b5b68;
+    }
   }
   .MuiInputBase-input {
     color: #fff;
@@ -125,18 +140,22 @@ export const TextErro = styled(Text)({
   marginTop: '-3px',
   fontSize: '1.2rem',
 })
-export const TooltipComponent = styled(Tooltip)<{ left?: boolean }>`
+export const TooltipComponent = styled(Tooltip)<{ left?: string }>`
   top: 3px;
   right: 3px;
   font-size: 2rem;
   position: absolute;
 
   ${(props) =>
-    props.left &&
+    props.left === 'true' &&
     css`
       left: 3px;
       right: auto;
     `};
+`
+export const TooltipLeftComponent = styled(TooltipComponent)`
+  left: 3px;
+  right: auto;
 `
 export const TooltipCenterComponent = styled(Tooltip)({
   display: 'flex',
@@ -159,9 +178,8 @@ export const AddIconComponent = styled(AddCircleIcon)({
   fontSize: '8rem',
   color: '#9996a3',
 })
-
 export const AvatarImage = ({ colorIndex, children }: AvatarImageProps) => {
-  return <StyledAvatar colorIndex={colorIndex}>{children}</StyledAvatar>
+  return <StyledAvatar colorindex={colorIndex}>{children}</StyledAvatar>
 }
 export const ContainerInput = styled(Container)<{ error?: boolean }>`
   width: 100%;
@@ -203,3 +221,5 @@ export const CardActionAreaComponent = styled(CardActionArea)({
   alignItems: 'center',
   justifyContent: 'center',
 })
+export const FormikComponent = styled(Formik)({})
+export const FormComponent = styled(Form)({})

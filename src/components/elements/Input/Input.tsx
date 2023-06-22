@@ -3,8 +3,8 @@ import { InputType } from './@types'
 import { useField } from 'formik'
 import * as S from './InputtStyled'
 
-const Input = ({ name, ...rest }: InputType) => {
-  const [field, mata] = useField(name)
+const Input = ({ nome, placeholder, ...rest }: InputType) => {
+  const [field, mata] = useField(nome)
 
   const configTextFild = {
     ...rest,
@@ -17,7 +17,7 @@ const Input = ({ name, ...rest }: InputType) => {
         <OutlinedInput
           {...configTextFild}
           autoComplete="false"
-          placeholder={name.toLocaleLowerCase()}
+          placeholder={placeholder}
           error={mata.touched && Boolean(mata.error)}
         />
       </FormControl>

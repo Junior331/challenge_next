@@ -308,7 +308,7 @@ const ModalAddClient = ({
             <LoadingButton
               type="submit"
               loading={loading}
-              loadingPosition="end"
+              loadingPosition="center"
               variant="contained"
             >
               Send

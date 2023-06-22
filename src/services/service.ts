@@ -54,6 +54,19 @@ export const deleteClients = async (id: number) => {
     // Trate o erro adequadamente
   }
 }
+export const putClients = async (clientData: ClientType) => {
+  try {
+    const response = await axios.put(`${baseUrl}Cliente/${clientData.id}`, {
+      data: {
+        ...clientData,
+      },
+    })
+    return response.status as number
+  } catch (error) {
+    console.error('Erro ao enviar a solicitação DELETE:', error)
+    // Trate o erro adequadamente
+  }
+}
 export const randomIntFromInterval = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }

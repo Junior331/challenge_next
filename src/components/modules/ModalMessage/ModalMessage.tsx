@@ -24,7 +24,6 @@ const ModalMessage = () => {
     })
   }
 
-  console.log({ state })
   return (
     <S.StackComponent spacing={2} sx={{ width: '100%' }}>
       <Snackbar
