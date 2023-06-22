@@ -53,7 +53,6 @@ export const Clients = () => {
   }
   const handleClose = () => {
     setIsOpen(!isOpen)
-    setLoading(true)
   }
   const handleMessage = (message = '', type = '', open = false) => {
     dispatch({
@@ -92,6 +91,9 @@ export const Clients = () => {
       setIsEdit(!isEdit)
       handleMessage('Update failed, try again later', 'error', true)
     }
+  }
+  const checkingState = (state: boolean) => {
+    setLoading(state)
   }
 
   useEffect(() => {
@@ -207,7 +209,11 @@ export const Clients = () => {
           </S.CardComponent>
         </S.ContainerCardComponent>
       )}
-      <ModalAddClient isOpen={isOpen} handleClose={handleClose} />
+      <ModalAddClient
+        isOpen={isOpen}
+        handleClose={handleClose}
+        updateState={checkingState}
+      />
     </S.ClientsContainer>
   )
 }
