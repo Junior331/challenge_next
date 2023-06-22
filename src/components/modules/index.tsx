@@ -1,4 +1,4 @@
-import { Card } from './Card'
-import { Header } from './Header'
+import { ModalMessage } from './ModalMessage'
+import { ModalAddClient } from './ModalAddClient'
 
-export { Card, Header }
+export { ModalMessage, ModalAddClient }

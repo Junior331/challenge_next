@@ -1,6 +1,6 @@
-import { ReactElement, Ref, forwardRef, useState } from 'react'
-import { Button, FormControl, OutlinedInput, Slide } from '@mui/material'
-
+import { ReactElement, Ref, forwardRef, useContext, useState } from 'react'
+import { FormControl, OutlinedInput, Slide } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { TransitionProps } from '@mui/material/transitions'
 import { useFormik } from 'formik'
 import { clientSchema } from '@/pages/Clients/clientSchema'
@@ -8,6 +8,8 @@ import * as S from './ModalAddClientStyled'
 import { ModalAddClientType } from './@types'
 import { postClients } from '@/services/service'
 import { PostClientType } from '@/pages/@types'
+import { MessageContext } from '@/state/modalMessage/state'
+import { Actions } from '@/state/modalMessage/@types/actions'
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -23,6 +25,8 @@ const ModalAddClient = ({
   handleClose = () => {},
 }: ModalAddClientType) => {
   const [open] = useState(isOpen)
+  const [loading, setLoading] = useState(false)
+  const { dispatch } = useContext(MessageContext)
 
   const closeModal = () => {
     handleClose(!open)
@@ -31,9 +35,28 @@ const ModalAddClient = ({
   const handlePost = async (client: PostClientType) => {
     try {
       await postClients(client)
+      closeModal()
+      setLoading(false)
+      dispatch({
+        type: Actions.SET_MESSAGE,
+        payload: {
+          open: true,
+          type: 'success',
+          message: 'Client successfully registered',
+        },
+      })
     } catch (error) {
       console.error('Erro ao enviar a solicitação DELETE:', error)
       // Trate o erro adequadamente
+      setLoading(false)
+      dispatch({
+        type: Actions.SET_MESSAGE,
+        payload: {
+          open: true,
+          type: 'error',
+          message: 'Registration failed, try again later',
+        },
+      })
     }
   }
 
@@ -68,7 +91,7 @@ const ModalAddClient = ({
         tipoDocumento,
         numeroDocumento,
       }
-      console.log('clientData ::', clientData)
+      setLoading(true)
       handlePost(clientData)
     },
     validationSchema: clientSchema,
@@ -282,9 +305,14 @@ const ModalAddClient = ({
               </FormControl>
               <S.TextErro variant="h5">{formik.errors.uf}</S.TextErro>
             </S.ContainerInput>
-            <Button type="submit" variant="contained">
-              Save
-            </Button>
+            <LoadingButton
+              type="submit"
+              loading={loading}
+              loadingPosition="end"
+              variant="contained"
+            >
+              Send
+            </LoadingButton>
           </form>
         </S.CardContentComponent>
       </S.CardComponent>

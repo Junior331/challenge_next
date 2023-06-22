@@ -8,6 +8,7 @@ import { GlobalStyles } from '@/styles/globalStyled'
 import { ReactNode } from 'react'
 import { ThemeProvider } from 'styled-components'
 import * as S from './styled'
+import { ModalMessage } from '@/components/modules'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <S.LayoutContainer>
               <GlobalStyles />
               <SideBar />
+              <ModalMessage />
               <S.LayoutContent>{children}</S.LayoutContent>
             </S.LayoutContainer>
           </Provider>

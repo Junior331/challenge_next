@@ -3,6 +3,8 @@ import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import DeleteIcon from '@mui/icons-material/Delete'
+import CloseIcon from '@mui/icons-material/Close'
+import EditIcon from '@mui/icons-material/Edit'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {
   Card,
@@ -71,19 +73,29 @@ export const CardComponent = styled(Card)({
   minHeight: 308,
   backgroundColor: 'rgb(41, 35, 61)',
 })
-export const CardContentComponent = styled(CardContent)({
-  display: 'flex',
-  alignItems: 'center',
-  position: 'relative',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  'input:-placeholder': {
-    color: '#fff',
-  },
-  form: {
-    width: '100%',
-  },
-})
+export const CardContentComponent = styled(CardContent)`
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  form {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .MuiInputBase-input {
+    color: #fff;
+    font-size: 12px;
+    padding: 7px 10px;
+    &:-placeholder {
+      color: #fff;
+    }
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #29233d inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+`
 export const BoxComponent = styled(Box)(({ theme }) => ({
   width: 60,
   height: 60,
@@ -113,16 +125,31 @@ export const TextErro = styled(Text)({
   marginTop: '-3px',
   fontSize: '1.2rem',
 })
-export const TooltipComponent = styled(Tooltip)({
-  top: '3px',
-  right: '3px',
-  fontSize: '2rem',
-  position: 'absolute',
-})
+export const TooltipComponent = styled(Tooltip)<{ left?: boolean }>`
+  top: 3px;
+  right: 3px;
+  font-size: 2rem;
+  position: absolute;
+
+  ${(props) =>
+    props.left &&
+    css`
+      left: 3px;
+      right: auto;
+    `};
+`
 export const TooltipCenterComponent = styled(Tooltip)({
   display: 'flex',
   fontSize: '2rem',
   justifyContent: 'center',
+})
+export const EditIconComponent = styled(EditIcon)({
+  fontSize: '2rem',
+  color: '#9996a3',
+})
+export const CloseIconComponent = styled(CloseIcon)({
+  fontSize: '2rem',
+  color: '#9996a3',
 })
 export const DeleteIconComponent = styled(DeleteIcon)({
   fontSize: '2rem',
