@@ -14,6 +14,11 @@ export type ClientType = {
   tipoDocumento: string
   numeroDocumento: string
 }
+export type paramsProps = {
+  params: {
+    id: string
+  }
+}
 export type AvatarImageProps = {
   colorIndex: number
   children: ReactNode
@@ -27,4 +32,17 @@ export type PostClientType = {
   logradouro: string
   tipoDocumento: string
   numeroDocumento: string
+}
+export type DriverType = {
+  id: number
+  nome: string
+  numeroHabilitacao: string
+  categoriaHabilitacao: string
+  vencimentoHabilitacao: string
+}
+export type PostDriverType = {
+  nome: string
+  numeroHabilitacao: string
+  categoriaHabilitacao: string
+  vencimentoHabilitacao: string
 }

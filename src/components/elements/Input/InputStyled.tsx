@@ -40,4 +40,16 @@ export const ContainerInput = styled(Container)<{ error?: boolean }>`
         margin-bottom: 10px;
       }
     `};
+  .MuiInputBase-input {
+    color: #fff;
+    font-size: 12px;
+    padding: 13px 10px;
+    &:-placeholder {
+      color: #fff;
+    }
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #29233d inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
 `

@@ -3,15 +3,15 @@ import { Slide } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { TransitionProps } from '@mui/material/transitions'
 import { FormikValues } from 'formik'
-import * as S from './ModalAddClientStyled'
+import * as S from './ModalAddDriveStyled'
 import { ModalType } from '../@types'
-import { postClients } from '@/services/service'
-import { PostClientType } from '@/pages/@types'
+import { postDriver } from '@/services/service'
 import { MessageContext } from '@/state/modalMessage/state'
 import { Actions } from '@/state/modalMessage/@types/actions'
-import { Input } from '@/components/elements'
+import { DateTimePickerComponent, Input } from '@/components/elements'
 import { hasError } from '@/utils/utils'
-import { clientSchema } from '@/validations/clientSchema'
+import { driverSchema } from '@/validations/driverSchema'
+import { PostDriverType } from '@/pages/@types'
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -22,31 +22,29 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const ModalAddClient = ({
+const ModalAddDriver = ({
   isOpen = false,
   handleClose = () => {},
   updateState = () => {},
 }: ModalType) => {
   const [open] = useState(isOpen)
-  const { dispatch } = useContext(MessageContext)
 
+  const [date, setDate] = useState<string>(new Date().toISOString())
+  const { dispatch } = useContext(MessageContext)
   const closeModal = () => {
     handleClose(!open)
   }
 
   const handlePost = async (values: FormikValues) => {
-    const clientData: PostClientType = {
-      uf: values.uf,
+    const driverData: PostDriverType = {
       nome: values.nome,
-      numero: values.numero,
-      bairro: values.bairro,
-      cidade: values.cidade,
-      logradouro: values.logradouro,
-      tipoDocumento: values.tipoDocumento,
-      numeroDocumento: values.numeroDocumento,
+      numeroHabilitacao: values.numeroHabilitacao,
+      categoriaHabilitacao: values.categoriaHabilitacao,
+      vencimentoHabilitacao: date,
     }
+
     try {
-      await postClients(clientData)
+      await postDriver(driverData)
       closeModal()
       updateState(true)
       dispatch({
@@ -54,7 +52,7 @@ const ModalAddClient = ({
         payload: {
           open: true,
           type: 'success',
-          message: 'Client successfully registered',
+          message: 'Driver successfully registered',
         },
       })
     } catch (error) {
@@ -71,11 +69,16 @@ const ModalAddClient = ({
       })
     }
   }
+  const handleDate = async (values: Date | null) => {
+    const originalDate = new Date(values?.toString() || '')
+    const formattedDate = originalDate.toISOString()
+    setDate(formattedDate)
+  }
 
   return (
     <S.DialogComponent
-      open={isOpen}
       keepMounted
+      open={isOpen}
       onClose={closeModal}
       TransitionComponent={Transition}
       aria-describedby="alert-dialog-slide-description"
@@ -84,17 +87,13 @@ const ModalAddClient = ({
         <S.CardContentComponent>
           <S.FormikComponent
             initialValues={{
-              uf: '',
               nome: '',
-              numero: '',
-              bairro: '',
-              cidade: '',
-              logradouro: '',
-              tipoDocumento: '',
-              numeroDocumento: '',
+              numeroHabilitacao: '',
+              categoriaHabilitacao: '',
+              vencimentoHabilitacao: date,
             }}
             onSubmit={handlePost}
-            validationSchema={clientSchema}
+            validationSchema={driverSchema}
           >
             {({ handleBlur, errors, touched }) => (
               <S.FormComponent>
@@ -106,53 +105,22 @@ const ModalAddClient = ({
                   error={hasError(errors, touched, 'nome')}
                 />
                 <Input
-                  nome="tipoDocumento"
                   onBlur={handleBlur}
-                  placeholder="Tipo do documento"
+                  nome="numeroHabilitacao"
                   helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'tipoDocumento')}
+                  placeholder="Numero da Habilitação"
+                  error={hasError(errors, touched, 'numeroHabilitacao')}
                 />
                 <Input
                   onBlur={handleBlur}
-                  nome="numeroDocumento"
+                  nome="categoriaHabilitacao"
                   helpText={errors?.uf as string}
-                  placeholder="Numero do documento"
-                  error={hasError(errors, touched, 'numeroDocumento')}
+                  placeholder="Categoria da Habilitação"
+                  error={hasError(errors, touched, 'categoriaHabilitacao')}
                 />
-                <Input
-                  nome="logradouro"
-                  onBlur={handleBlur}
-                  placeholder="Logradouro"
-                  helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'logradouro')}
-                />
-                <Input
-                  nome="numero"
-                  onBlur={handleBlur}
-                  placeholder="Numero"
-                  helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'numero')}
-                />
-                <Input
-                  nome="bairro"
-                  onBlur={handleBlur}
-                  placeholder="Bairro"
-                  helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'bairro')}
-                />
-                <Input
-                  nome="cidade"
-                  onBlur={handleBlur}
-                  placeholder="Cidade"
-                  helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'cidade')}
-                />
-                <Input
-                  nome="uf"
-                  onBlur={handleBlur}
-                  placeholder="UF"
-                  helpText={errors?.uf as string}
-                  error={hasError(errors, touched, 'uf')}
+                <DateTimePickerComponent
+                  handleDate={handleDate}
+                  placeholder={'Vencimento da Habilitação'}
                 />
                 <LoadingButton
                   type="submit"
@@ -170,4 +138,4 @@ const ModalAddClient = ({
   )
 }
 
-export default ModalAddClient
+export default ModalAddDriver

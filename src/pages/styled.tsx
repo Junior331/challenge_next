@@ -22,16 +22,17 @@ import {
   purple,
   indigo,
 } from '@mui/material/colors'
-import { AvatarImageProps } from '../@types'
+import { AvatarImageProps } from './@types'
 import { Form, Formik } from 'formik'
+import Link from 'next/link'
 
 const colorsList = [
-  orange[500],
   red[500],
   brown[500],
-  deepPurple[500],
   purple[500],
+  orange[500],
   indigo[500],
+  deepPurple[500],
 ]
 
 const StyledAvatar = styled(Avatar)(
@@ -43,7 +44,7 @@ const StyledAvatar = styled(Avatar)(
     backgroundColor: colorsList[colorindex % colorsList.length],
   }),
 )
-export const ClientsContainer = styled(Container)({
+export const MainContainer = styled(Container)({
   gap: 20,
   flexDirection: 'column',
   maxWidth: '100% !important',
@@ -72,7 +73,15 @@ export const CardComponent = styled(Card)({
   width: '100%',
   maxWidth: 250,
   minHeight: 308,
+  cursor: 'pointer',
   backgroundColor: 'rgb(41, 35, 61)',
+})
+export const LinkComponent = styled(Link)({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  textDecoration: 'none',
+  flexDirection: 'column',
 })
 export const CardContentComponent = styled(CardContent)`
   display: flex;
