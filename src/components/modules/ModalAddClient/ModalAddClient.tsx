@@ -155,6 +155,7 @@ const ModalAddClient = ({
                   error={hasError(errors, touched, 'uf')}
                 />
                 <LoadingButton
+                  startIcon
                   type="submit"
                   variant="contained"
                   loadingPosition="start"

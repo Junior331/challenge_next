@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import * as yup from 'yup'
 
 export const driverSchema = yup.object().shape({
@@ -10,7 +9,7 @@ export const driverSchema = yup.object().shape({
     .string()
     .min(3, 'Numero da Habilitação inválido, mínimo de 3 ou mais caracteres')
     .required('Campo obrigatório'),
-  categoriaHabilitacao: yup.string().required('Campo obrigatório'),
+  catergoriaHabilitacao: yup.string().required('Campo obrigatório'),
   vencimentoHabilitacao: yup
     .date()
     .min(new Date(), 'A data de vencimento deve ser posterior à data atual')

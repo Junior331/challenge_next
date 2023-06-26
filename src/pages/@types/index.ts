@@ -37,6 +37,11 @@ export type DriverType = {
   id: number
   nome: string
   numeroHabilitacao: string
+  catergoriaHabilitacao: string
+  vencimentoHabilitacao: string
+}
+export type PutDriverType = {
+  id: number
   categoriaHabilitacao: string
   vencimentoHabilitacao: string
 }

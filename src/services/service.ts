@@ -5,6 +5,7 @@ import {
   DriverType,
   PostClientType,
   PostDriverType,
+  PutDriverType,
 } from '@/pages/@types'
 import axios from 'axios'
 // import axios from 'axios'
@@ -51,6 +52,7 @@ export const postClients = async (clientData: PostClientType) => {
     return response.status
   } catch (error) {
     console.error('Erro ao enviar a solicitação POST:', error)
+    throw error
   }
 }
 export const deleteClients = async (id: number) => {
@@ -67,7 +69,7 @@ export const deleteClients = async (id: number) => {
     return response.status as number
   } catch (error) {
     console.error('Erro ao enviar a solicitação DELETE:', error)
-    // Trate o erro adequadamente
+    throw error
   }
 }
 export const putClients = async (clientData: ClientType) => {
@@ -78,7 +80,7 @@ export const putClients = async (clientData: ClientType) => {
     return response.status as number
   } catch (error) {
     console.error('Erro ao enviar a solicitação ATUALIZAR:', error)
-    // Trate o erro adequadamente
+    throw error
   }
 }
 
@@ -112,6 +114,7 @@ export const postDriver = async (driverData: PostDriverType) => {
     return response.status
   } catch (error) {
     console.error('Erro ao enviar a solicitação POST:', error)
+    throw error
   }
 }
 export const deleteDrivers = async (id: number) => {
@@ -128,19 +131,17 @@ export const deleteDrivers = async (id: number) => {
     return response.status as number
   } catch (error) {
     console.error('Erro ao enviar a solicitação DELETE:', error)
-    // Trate o erro adequadamente
+    throw error
   }
 }
-export const putDrivers = async (driverData: DriverType) => {
+export const putDrivers = async (driverData: PutDriverType) => {
   try {
     const response = await axios.put(`${baseUrl}Condutor/${driverData.id}`, {
-      data: {
-        ...driverData,
-      },
+      ...driverData,
     })
-    return response.status as number
+    return response
   } catch (error) {
     console.error('Erro ao enviar a solicitação ATUALIZAR:', error)
-    // Trate o erro adequadamente
+    throw error
   }
 }

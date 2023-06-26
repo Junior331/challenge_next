@@ -38,9 +38,9 @@ const ModalAddDriver = ({
   const handlePost = async (values: FormikValues) => {
     const driverData: PostDriverType = {
       nome: values.nome,
-      numeroHabilitacao: values.numeroHabilitacao,
-      categoriaHabilitacao: values.categoriaHabilitacao,
       vencimentoHabilitacao: date,
+      numeroHabilitacao: values.numeroHabilitacao,
+      categoriaHabilitacao: values.catergoriaHabilitacao,
     }
 
     try {
@@ -89,7 +89,7 @@ const ModalAddDriver = ({
             initialValues={{
               nome: '',
               numeroHabilitacao: '',
-              categoriaHabilitacao: '',
+              catergoriaHabilitacao: '',
               vencimentoHabilitacao: date,
             }}
             onSubmit={handlePost}
@@ -101,28 +101,31 @@ const ModalAddDriver = ({
                   nome="nome"
                   placeholder="Nome"
                   onBlur={handleBlur}
-                  helpText={errors?.uf as string}
+                  helpText={errors?.nome as string}
                   error={hasError(errors, touched, 'nome')}
                 />
                 <Input
                   onBlur={handleBlur}
                   nome="numeroHabilitacao"
-                  helpText={errors?.uf as string}
                   placeholder="Numero da Habilitação"
+                  helpText={errors?.numeroHabilitacao as string}
                   error={hasError(errors, touched, 'numeroHabilitacao')}
                 />
                 <Input
                   onBlur={handleBlur}
-                  nome="categoriaHabilitacao"
-                  helpText={errors?.uf as string}
+                  nome="catergoriaHabilitacao"
                   placeholder="Categoria da Habilitação"
-                  error={hasError(errors, touched, 'categoriaHabilitacao')}
+                  helpText={errors?.catergoriaHabilitacao as string}
+                  error={hasError(errors, touched, 'catergoriaHabilitacao')}
                 />
                 <DateTimePickerComponent
                   handleDate={handleDate}
                   placeholder={'Vencimento da Habilitação'}
+                  helpText={errors?.vencimentoHabilitacao as string}
+                  error={hasError(errors, touched, 'vencimentoHabilitacao')}
                 />
                 <LoadingButton
+                  startIcon
                   type="submit"
                   variant="contained"
                   loadingPosition="start"

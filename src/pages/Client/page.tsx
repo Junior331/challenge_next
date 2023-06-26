@@ -108,20 +108,22 @@ export const Client = ({ params }: paramsProps) => {
         </S.Content>
         <S.ContainerButtons>
           <S.LoadingButtonComponent
+            startIcon
             type="submit"
             variant="contained"
-            onClick={() => setIsEdit(!isEdit)}
             loadingPosition="start"
+            onClick={() => setIsEdit(!isEdit)}
           >
             {isEdit ? 'Cancel' : 'Edit'}
           </S.LoadingButtonComponent>
           <S.LoadingButtonComponent
+            startIcon
             type="submit"
             color="error"
             disabled={isEdit}
             variant="contained"
-            loadingPosition="start"
             onClick={handleDelete}
+            loadingPosition="start"
           >
             Delete
           </S.LoadingButtonComponent>
@@ -264,6 +266,7 @@ export const Client = ({ params }: paramsProps) => {
               </S.ContainerInfo>
               {isEdit && (
                 <S.LoadingButtonComponent
+                  startIcon
                   type="submit"
                   loading={isSave}
                   disabled={!isValid}

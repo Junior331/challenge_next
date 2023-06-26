@@ -5,8 +5,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers'
 import { DatePickerProps } from './@types'
+import * as S from './DatePickerStyled'
 
 export const DateTimePickerComponent = ({
+  error,
+  helpText,
   placeholder,
   handleDate,
 }: DatePickerProps) => {
@@ -23,6 +26,7 @@ export const DateTimePickerComponent = ({
           }}
         />
       </DemoContainer>
+      {error && <S.TextErro variant="h5">{helpText}</S.TextErro>}
     </LocalizationProvider>
   )
 }

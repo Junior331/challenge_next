@@ -7,6 +7,6 @@ export const StackComponent = styled(Stack)({
   position: 'absolute',
 
   '.MuiAlert-message': {
-    padding: '12px 0 8px',
+    fontSize: '14px',
   },
 })

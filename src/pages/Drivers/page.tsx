@@ -60,7 +60,7 @@ export const Drivers = () => {
                     Numero: {driver.numeroHabilitacao}
                   </S.Text>
                   <S.Text variant="h5">
-                    Categoria: {driver.categoriaHabilitacao}
+                    Categoria: {driver.catergoriaHabilitacao}
                   </S.Text>
                   <S.Text variant="h5">
                     Vencimento: {driver.vencimentoHabilitacao}

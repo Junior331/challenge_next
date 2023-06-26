@@ -158,13 +158,38 @@ export const ContainerInfo = styled(Container)({
   maxWidth: '100% !important',
   justifyContent: 'space-between',
 })
-export const Info = styled(Container)({
-  margin: 0,
-  width: '100%',
-  textAlign: 'start',
-  padding: '0px !important',
-  maxWidth: '210px !important',
-})
+export const Info = styled(Container)`
+  margin: 0;
+  width: 100%;
+  text-align: start;
+  padding: 0px !important;
+  max-width: 270px !important;
+
+  .MuiStack-root {
+    padding-top: 5px;
+    margin-bottom: 25px;
+    input {
+      color: #fff;
+      font-size: 12px;
+      padding: 11px 10px;
+      &:-placeholder {
+        color: #fff;
+      }
+    }
+    label {
+      color: #9996a3;
+      transition: none;
+    }
+    label.Mui-focused,
+    legend {
+      display: none;
+      transition: none;
+    }
+    .MuiSvgIcon-root {
+      fill: #a69fbb;
+    }
+  }
+`
 export const FormComponent = styled(Form)<{ isEdit?: boolean }>`
   display: flex;
   flex-direction: column;

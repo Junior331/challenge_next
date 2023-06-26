@@ -1,4 +1,4 @@
-import { DriverType, paramsProps } from '../@types'
+import { DriverType, PutDriverType, paramsProps } from '../@types'
 import * as S from '../subStyles'
 import {
   deleteDrivers,
@@ -9,7 +9,7 @@ import {
 import { useContext, useEffect, useState } from 'react'
 import { IconButton } from '@mui/material'
 import { FormikValues } from 'formik'
-import { Input } from '@/components/elements'
+import { DateTimePickerComponent, Input } from '@/components/elements'
 import { Actions } from '@/state/modalMessage/@types/actions'
 import { MessageContext } from '@/state/modalMessage/state'
 import { useRouter } from 'next/navigation'
@@ -22,12 +22,13 @@ export const Driver = ({ params }: paramsProps) => {
   const [isEdit, setIsEdit] = useState(false)
   const [isSave, setIsSave] = useState(false)
   const { dispatch } = useContext(MessageContext)
+  const [date, setDate] = useState<string>(new Date().toISOString())
 
   const [driverData, setDriverData] = useState<DriverType>({
     id: 0,
     nome: '',
     numeroHabilitacao: '',
-    categoriaHabilitacao: '',
+    catergoriaHabilitacao: '',
     vencimentoHabilitacao: '',
   })
 
@@ -63,24 +64,31 @@ export const Driver = ({ params }: paramsProps) => {
   }
   const handlePutDriver = async (values: FormikValues) => {
     setIsSave(true)
-    const driverData: DriverType = {
-      nome: values.nome,
+    const driverData: PutDriverType = {
       id: parseFloat(params.id),
-      numeroHabilitacao: values.numeroHabilitacao,
-      categoriaHabilitacao: values.categoriaHabilitacao,
-      vencimentoHabilitacao: values.vencimentoHabilitacao,
+      vencimentoHabilitacao: date,
+      categoriaHabilitacao: values.catergoriaHabilitacao,
     }
+
     try {
       await putDrivers(driverData)
       setIsSave(false)
       setLoading(true)
       setIsEdit(!isEdit)
       handleMessage('Driver successfully updated', 'success', true)
-    } catch (error) {
+    } catch (error: any) {
+      setIsSave(false)
       setIsEdit(!isEdit)
-      handleMessage('Update failed, try again later', 'error', true)
+      handleMessage(error.response.data, 'error', true)
     }
   }
+
+  const handleDate = async (values: Date | null) => {
+    const originalDate = new Date(values?.toString() || '')
+    const formattedDate = originalDate.toISOString()
+    setDate(formattedDate)
+  }
+
   useEffect(() => {
     getDriverData()
   }, [loading])
@@ -100,20 +108,22 @@ export const Driver = ({ params }: paramsProps) => {
         </S.Content>
         <S.ContainerButtons>
           <S.LoadingButtonComponent
+            startIcon
             type="submit"
             variant="contained"
-            onClick={() => setIsEdit(!isEdit)}
             loadingPosition="start"
+            onClick={() => setIsEdit(!isEdit)}
           >
             {isEdit ? 'Cancel' : 'Edit'}
           </S.LoadingButtonComponent>
           <S.LoadingButtonComponent
+            startIcon
             type="submit"
             color="error"
             disabled={isEdit}
             variant="contained"
-            loadingPosition="start"
             onClick={handleDelete}
+            loadingPosition="start"
           >
             Delete
           </S.LoadingButtonComponent>
@@ -125,8 +135,8 @@ export const Driver = ({ params }: paramsProps) => {
             id: driverData.id,
             nome: '',
             numeroHabilitacao: '',
-            categoriaHabilitacao: '',
-            vencimentoHabilitacao: '',
+            catergoriaHabilitacao: '',
+            vencimentoHabilitacao: date,
           }}
           validateOnMount
           onSubmit={handlePutDriver}
@@ -142,7 +152,7 @@ export const Driver = ({ params }: paramsProps) => {
                       nome="nome"
                       placeholder="Nome"
                       onBlur={handleBlur}
-                      helpText={errors?.uf as string}
+                      helpText={errors?.nome as string}
                       error={hasError(errors, touched, 'nome')}
                     />
                   ) : (
@@ -155,7 +165,7 @@ export const Driver = ({ params }: paramsProps) => {
                     <Input
                       onBlur={handleBlur}
                       nome="numeroHabilitacao"
-                      helpText={errors?.uf as string}
+                      helpText={errors?.numeroHabilitacao as string}
                       placeholder="Numero da Habilitação"
                       error={hasError(errors, touched, 'numeroHabilitacao')}
                     />
@@ -170,26 +180,25 @@ export const Driver = ({ params }: paramsProps) => {
                   {isEdit ? (
                     <Input
                       onBlur={handleBlur}
-                      nome="categoriaHabilitacao"
-                      helpText={errors?.uf as string}
+                      nome="catergoriaHabilitacao"
+                      helpText={errors?.catergoriaHabilitacao as string}
                       placeholder="Categoria da Habilitação"
-                      error={hasError(errors, touched, 'categoriaHabilitacao')}
+                      error={hasError(errors, touched, 'catergoriaHabilitacao')}
                     />
                   ) : (
                     <S.Text variant="h5">
-                      {driverData.categoriaHabilitacao}
+                      {driverData.catergoriaHabilitacao}
                     </S.Text>
                   )}
                 </S.Info>
                 <S.Info>
                   <S.Title variant="h5">V* Habilitação</S.Title>
                   {isEdit ? (
-                    <Input
-                      nome="vencimentoHabilitacao"
-                      onBlur={handleBlur}
-                      placeholder="Vencimento da Habilitação"
-                      helpText={errors?.uf as string}
+                    <DateTimePickerComponent
+                      helpText={errors?.vencimentoHabilitacao as string}
                       error={hasError(errors, touched, 'vencimentoHabilitacao')}
+                      handleDate={handleDate}
+                      placeholder={''}
                     />
                   ) : (
                     <S.Text variant="h5">
@@ -200,6 +209,7 @@ export const Driver = ({ params }: paramsProps) => {
               </S.ContainerInfo>
               {isEdit && (
                 <S.LoadingButtonComponent
+                  startIcon
                   type="submit"
                   loading={isSave}
                   disabled={!isValid}
