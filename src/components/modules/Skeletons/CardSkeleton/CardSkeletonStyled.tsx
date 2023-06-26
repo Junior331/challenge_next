@@ -43,13 +43,6 @@ export const ContainerSkeleton = styled.div`
     background-color: rgb(255 255 255 / 16%);
   }
   > span:first-child {
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    border-radius: 100%;
-    position: absolute;
-  }
-  > span:nth-child(2n) {
     border-radius: 100%;
   }
 `

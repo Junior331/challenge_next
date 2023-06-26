@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 // eslint-disable-next-line no-unused-vars
 import { ClientType, PostClientType } from '../@types'
-import { CardClientSkeleton } from '@/components/modules/Skeletons/index'
+import { CardSkeleton } from '@/components/modules/Skeletons'
 import { ModalAddClient } from '@/components/modules'
 
 export const Clients = () => {
@@ -38,11 +38,11 @@ export const Clients = () => {
       <S.Title variant="h5">Clients</S.Title>
       {loading ? (
         <S.ContainerCardComponent>
-          <CardClientSkeleton />
-          <CardClientSkeleton />
-          <CardClientSkeleton />
-          <CardClientSkeleton />
-          <CardClientSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
         </S.ContainerCardComponent>
       ) : (
         <S.ContainerCardComponent>

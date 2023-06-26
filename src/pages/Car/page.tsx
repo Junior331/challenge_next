@@ -1,9 +1,9 @@
-import { DriverType, PutDriverType, paramsProps } from '../@types'
+import { CarType, PutCarType, paramsProps } from '../@types'
 import * as S from '../subStyles'
 import {
-  deleteDrivers,
-  getDriver,
-  putDrivers,
+  deleteCars,
+  getCar,
+  putCars,
   randomIntFromInterval,
 } from '@/services/service'
 import { useContext, useEffect, useState } from 'react'
@@ -14,28 +14,28 @@ import { Actions } from '@/state/modalMessage/@types/actions'
 import { MessageContext } from '@/state/modalMessage/state'
 import { useRouter } from 'next/navigation'
 import { hasError } from '@/utils/utils'
-import { driverSchema } from '@/validations/driverSchema'
+import { carSchema } from '@/validations/carSchema'
 
-export const Driver = ({ params }: paramsProps) => {
+export const Car = ({ params }: paramsProps) => {
   const { push } = useRouter()
   const [loading, setLoading] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
   const [isSave, setIsSave] = useState(false)
   const { dispatch } = useContext(MessageContext)
-  const [date, setDate] = useState<string>(new Date().toISOString())
+  const [date, setDate] = useState<number>(new Date().getFullYear())
 
-  const [driverData, setDriverData] = useState<DriverType>({
+  const [carData, setCarData] = useState<CarType>({
     id: 0,
-    nome: '',
-    numeroHabilitacao: '',
-    catergoriaHabilitacao: '',
-    vencimentoHabilitacao: '',
+    placa: '',
+    kmAtual: 0,
+    marcaModelo: '',
+    anoFabricacao: 0,
   })
 
-  const getDriverData = async () => {
+  const getCarData = async () => {
     try {
-      const result = await getDriver(parseFloat(params.id))
-      setDriverData(result)
+      const result = await getCar(parseFloat(params.id))
+      setCarData(result)
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -54,28 +54,29 @@ export const Driver = ({ params }: paramsProps) => {
   const handleDelete = async () => {
     try {
       setLoading(true)
-      await deleteDrivers(parseFloat(params.id))
-      handleMessage('Driver successfully deleted', 'success', true)
-      push('/drivers')
+      await deleteCars(parseFloat(params.id))
+      handleMessage('Car successfully deleted', 'success', true)
+      push('/cars')
     } catch (error) {
       // console.error('Error sending request DELETE:', error)
       handleMessage('Delete failed, try again later', 'error', true)
     }
   }
-  const handlePutDriver = async (values: FormikValues) => {
+  const handlePutCar = async (values: FormikValues) => {
     setIsSave(true)
-    const driverData: PutDriverType = {
+    const carData: PutCarType = {
+      anoFabricacao: date,
+      kmAtual: values.kmAtual,
       id: parseFloat(params.id),
-      vencimentoHabilitacao: date,
-      categoriaHabilitacao: values.catergoriaHabilitacao,
+      marcaModelo: values.marcaModelo,
     }
 
     try {
-      await putDrivers(driverData)
+      await putCars(carData)
       setIsSave(false)
       setLoading(true)
       setIsEdit(!isEdit)
-      handleMessage('Driver successfully updated', 'success', true)
+      handleMessage('Car successfully updated', 'success', true)
     } catch (error: any) {
       setIsSave(false)
       setIsEdit(!isEdit)
@@ -83,14 +84,15 @@ export const Driver = ({ params }: paramsProps) => {
     }
   }
 
-  const handleDate = async (values: Date | null) => {
+  const handleChange = async (values: Date | null) => {
     const originalDate = new Date(values?.toString() || '')
-    const formattedDate = originalDate.toISOString()
+    const formattedDate = originalDate.getFullYear()
+    console.log(formattedDate)
     setDate(formattedDate)
   }
 
   useEffect(() => {
-    getDriverData()
+    getCarData()
   }, [loading])
 
   return (
@@ -99,11 +101,12 @@ export const Driver = ({ params }: paramsProps) => {
         <S.Content>
           <S.BoxComponent>
             <S.AvatarImage colorIndex={randomIntFromInterval(1, 6)}>
-              {driverData.nome.slice(0, 1).toLocaleUpperCase()}
+              {carData.marcaModelo.slice(0, 1).toLocaleUpperCase()}
             </S.AvatarImage>
           </S.BoxComponent>
           <S.Title variant="h5">
-            {driverData.nome[0]?.toUpperCase() + driverData.nome.substring(1)}
+            {carData.marcaModelo[0]?.toUpperCase() +
+              carData.marcaModelo.substring(1)}
           </S.Title>
         </S.Content>
         <S.ContainerButtons>
@@ -132,78 +135,75 @@ export const Driver = ({ params }: paramsProps) => {
       <S.CardComponent>
         <S.FormikComponent
           initialValues={{
-            id: driverData.id,
-            nome: '',
-            numeroHabilitacao: '',
-            catergoriaHabilitacao: '',
-            vencimentoHabilitacao: date,
+            placa: '',
+            kmAtual: '',
+            id: carData.id,
+            marcaModelo: '',
+            anoFabricacao: date,
           }}
           validateOnMount
-          onSubmit={handlePutDriver}
-          validationSchema={driverSchema}
+          onSubmit={handlePutCar}
+          validationSchema={carSchema}
         >
           {({ handleBlur, errors, touched, isValid }) => (
             <S.FormComponent isEdit={isEdit}>
               <S.ContainerInfo>
                 <S.Info>
-                  <S.Title variant="h5">Nome</S.Title>
+                  <S.Title variant="h5">Model</S.Title>
                   {isEdit ? (
                     <Input
-                      nome="nome"
-                      placeholder="Nome"
+                      nome="marcaModelo"
+                      placeholder="Model"
                       onBlur={handleBlur}
-                      helpText={errors?.nome as string}
-                      error={hasError(errors, touched, 'nome')}
+                      helpText={errors?.marcaModelo as string}
+                      error={hasError(errors, touched, 'marcaModelo')}
                     />
                   ) : (
-                    <S.Text variant="h5">{driverData.nome}</S.Text>
+                    <S.Text variant="h5">{carData.marcaModelo}</S.Text>
                   )}
                 </S.Info>
                 <S.Info>
-                  <S.Title variant="h5">N* Habilitação</S.Title>
+                  <S.Title variant="h5">KM</S.Title>
                   {isEdit ? (
                     <Input
                       onBlur={handleBlur}
-                      nome="numeroHabilitacao"
-                      helpText={errors?.numeroHabilitacao as string}
-                      placeholder="Numero da Habilitação"
-                      error={hasError(errors, touched, 'numeroHabilitacao')}
+                      nome="kmAtual"
+                      helpText={errors?.kmAtual as string}
+                      placeholder="KM"
+                      error={hasError(errors, touched, 'kmAtual')}
                     />
                   ) : (
-                    <S.Text variant="h5">{driverData.numeroHabilitacao}</S.Text>
+                    <S.Text variant="h5">{carData.kmAtual}</S.Text>
                   )}
                 </S.Info>
               </S.ContainerInfo>
               <S.ContainerInfo>
                 <S.Info>
-                  <S.Title variant="h5">C* Habilitação</S.Title>
+                  <S.Title variant="h5">Place</S.Title>
                   {isEdit ? (
                     <Input
                       onBlur={handleBlur}
-                      nome="catergoriaHabilitacao"
-                      helpText={errors?.catergoriaHabilitacao as string}
-                      placeholder="Categoria da Habilitação"
-                      error={hasError(errors, touched, 'catergoriaHabilitacao')}
+                      nome="placa"
+                      helpText={errors?.placa as string}
+                      placeholder="Place"
+                      error={hasError(errors, touched, 'placa')}
                     />
                   ) : (
-                    <S.Text variant="h5">
-                      {driverData.catergoriaHabilitacao}
-                    </S.Text>
+                    <S.Text variant="h5">{carData.placa}</S.Text>
                   )}
                 </S.Info>
                 <S.Info>
                   <S.Title variant="h5">V* Habilitação</S.Title>
                   {isEdit ? (
                     <DateTimePickerComponent
-                      helpText={errors?.vencimentoHabilitacao as string}
-                      error={hasError(errors, touched, 'vencimentoHabilitacao')}
-                      handleDate={handleDate}
-                      placeholder={''}
+                      isSecudary
+                      handleDate={handleChange}
+                      placeholder={'Fabrication'}
+                      helpText={errors?.anoFabricacao as string}
+                      error={hasError(errors, touched, 'anoFabricacao')}
                     />
                   ) : (
-                    <S.Text variant="h5">
-                      {driverData.vencimentoHabilitacao}
-                    </S.Text>
+                    <S.Text variant="h5">{carData.anoFabricacao}</S.Text>
                   )}
                 </S.Info>
               </S.ContainerInfo>
@@ -223,7 +223,7 @@ export const Driver = ({ params }: paramsProps) => {
           )}
         </S.FormikComponent>
       </S.CardComponent>
-      <S.ButtonBack href={'/drivers'}>
+      <S.ButtonBack href={'/cars'}>
         <S.TooltipComponent title="">
           <IconButton>
             <S.ChevronLeftIconComponent />

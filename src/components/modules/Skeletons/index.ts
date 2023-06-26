@@ -1,4 +1,4 @@
+import { CardSkeleton } from './CardSkeleton'
 import { SideBarSkeleton } from './SideBarSkeleton'
-import { CardClientSkeleton } from './CardClientSkeleton'
 
-export { SideBarSkeleton, CardClientSkeleton }
+export { CardSkeleton, SideBarSkeleton }

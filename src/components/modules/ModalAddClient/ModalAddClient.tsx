@@ -58,7 +58,7 @@ const ModalAddClient = ({
         },
       })
     } catch (error) {
-      console.error('Erro ao enviar a solicitação DELETE:', error)
+      console.error('Error sending request DELETE:', error)
       closeModal()
       updateState(true)
       dispatch({

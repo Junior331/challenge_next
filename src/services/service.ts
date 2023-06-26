@@ -1,10 +1,13 @@
 import { itenSideBarType } from '@/components/modules/SideBar/@types'
 import { Links } from '@/mocks/Links'
 import {
+  CarType,
   ClientType,
   DriverType,
+  PostCarType,
   PostClientType,
   PostDriverType,
+  PutCarType,
   PutDriverType,
 } from '@/pages/@types'
 import axios from 'axios'
@@ -25,7 +28,6 @@ export const getRoutes = async (): Promise<itenSideBarType[]> => {
     throw error
   }
 }
-
 export const getClient = async (id: number): Promise<ClientType> => {
   try {
     const response = await axios.get(`${baseUrl}Cliente/${id}`)
@@ -51,7 +53,7 @@ export const postClients = async (clientData: PostClientType) => {
     const response = await axios.post(`${baseUrl}Cliente`, clientData)
     return response.status
   } catch (error) {
-    console.error('Erro ao enviar a solicitação POST:', error)
+    console.error('Error sending request POST:', error)
     throw error
   }
 }
@@ -68,7 +70,7 @@ export const deleteClients = async (id: number) => {
     })
     return response.status as number
   } catch (error) {
-    console.error('Erro ao enviar a solicitação DELETE:', error)
+    console.error('Error sending request DELETE:', error)
     throw error
   }
 }
@@ -79,15 +81,13 @@ export const putClients = async (clientData: ClientType) => {
     })
     return response.status as number
   } catch (error) {
-    console.error('Erro ao enviar a solicitação ATUALIZAR:', error)
+    console.error('Error sending request UPDATE:', error)
     throw error
   }
 }
-
 export const randomIntFromInterval = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 export const getDrivers = async (): Promise<DriverType[]> => {
   try {
     const response = await axios.get(`${baseUrl}Condutor`)
@@ -113,7 +113,7 @@ export const postDriver = async (driverData: PostDriverType) => {
     const response = await axios.post(`${baseUrl}Condutor`, driverData)
     return response.status
   } catch (error) {
-    console.error('Erro ao enviar a solicitação POST:', error)
+    console.error('Error sending request POST:', error)
     throw error
   }
 }
@@ -130,7 +130,7 @@ export const deleteDrivers = async (id: number) => {
     })
     return response.status as number
   } catch (error) {
-    console.error('Erro ao enviar a solicitação DELETE:', error)
+    console.error('Error sending request DELETE:', error)
     throw error
   }
 }
@@ -141,7 +141,65 @@ export const putDrivers = async (driverData: PutDriverType) => {
     })
     return response
   } catch (error) {
-    console.error('Erro ao enviar a solicitação ATUALIZAR:', error)
+    console.error('Error sending request UPDATE:', error)
+    throw error
+  }
+}
+
+export const getCars = async (): Promise<CarType[]> => {
+  try {
+    const response = await axios.get(`${baseUrl}Veiculo`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('Error when getting cars:', error)
+    throw error
+  }
+}
+export const getCar = async (id: number): Promise<CarType> => {
+  try {
+    const response = await axios.get(`${baseUrl}Veiculo/${id}`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('Error when getting car:', error)
+    throw error
+  }
+}
+export const postCar = async (driverData: PostCarType) => {
+  try {
+    const response = await axios.post(`${baseUrl}Veiculo`, driverData)
+    return response.status
+  } catch (error) {
+    console.error('Error sending request POST:', error)
+    throw error
+  }
+}
+export const deleteCars = async (id: number) => {
+  try {
+    const deleteRequest: {
+      id: number
+    } = {
+      id,
+    }
+
+    const response = await axios.delete(`${baseUrl}Veiculo/${id}`, {
+      data: deleteRequest,
+    })
+    return response.status as number
+  } catch (error) {
+    console.error('Error sending request DELETE:', error)
+    throw error
+  }
+}
+export const putCars = async (driverData: PutCarType) => {
+  try {
+    const response = await axios.put(`${baseUrl}Veiculo/${driverData.id}`, {
+      ...driverData,
+    })
+    return response
+  } catch (error) {
+    console.error('Error sending request UPDATE:', error)
     throw error
   }
 }

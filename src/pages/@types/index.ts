@@ -3,6 +3,16 @@ import { ReactNode } from 'react'
 export type styleProps = {
   size?: string
 }
+
+export type paramsProps = {
+  params: {
+    id: string
+  }
+}
+export type AvatarImageProps = {
+  colorIndex: number
+  children: ReactNode
+}
 export type ClientType = {
   id: number
   uf: string
@@ -14,15 +24,6 @@ export type ClientType = {
   tipoDocumento: string
   numeroDocumento: string
 }
-export type paramsProps = {
-  params: {
-    id: string
-  }
-}
-export type AvatarImageProps = {
-  colorIndex: number
-  children: ReactNode
-}
 export type PostClientType = {
   uf: string
   nome: string
@@ -33,6 +34,7 @@ export type PostClientType = {
   tipoDocumento: string
   numeroDocumento: string
 }
+
 export type DriverType = {
   id: number
   nome: string
@@ -50,4 +52,24 @@ export type PostDriverType = {
   numeroHabilitacao: string
   categoriaHabilitacao: string
   vencimentoHabilitacao: string
+}
+
+export type CarType = {
+  id: number
+  placa: string
+  kmAtual: number
+  marcaModelo: string
+  anoFabricacao: number
+}
+export type PostCarType = {
+  placa: string
+  kmAtual: number
+  marcaModelo: string
+  anoFabricacao: number
+}
+export type PutCarType = {
+  id: number
+  kmAtual: number
+  marcaModelo: string
+  anoFabricacao: number
 }

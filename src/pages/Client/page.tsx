@@ -61,7 +61,7 @@ export const Client = ({ params }: paramsProps) => {
       handleMessage('Client successfully deleted', 'success', true)
       push('/')
     } catch (error) {
-      // console.error('Erro ao enviar a solicitação DELETE:', error)
+      // console.error('Error sending request DELETE:', error)
       handleMessage('Delete failed, try again later', 'error', true)
     }
   }

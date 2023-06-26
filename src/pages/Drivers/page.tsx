@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { DriverType } from '../@types'
 import { ModalAddDrive } from '@/components/modules'
+import { CardSkeleton } from '@/components/modules/Skeletons'
 // import { CardDriverSkeleton } from '@/components/modules/Skeletons/index'
 
 export const Drivers = () => {
@@ -37,12 +38,11 @@ export const Drivers = () => {
       <S.Title variant="h5">Drivers</S.Title>
       {loading ? (
         <S.ContainerCardComponent>
-          {/* <CardDriverSkeleton />
-          <CardDriverSkeleton />
-          <CardDriverSkeleton />
-          <CardDriverSkeleton />
-          <CardDriverSkeleton /> */}
-          <div>loading...</div>
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
+          <CardSkeleton />
         </S.ContainerCardComponent>
       ) : (
         <S.ContainerCardComponent>
