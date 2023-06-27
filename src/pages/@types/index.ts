@@ -125,10 +125,3 @@ export enum IconWeather {
   Freezing = 'Freezing',
   Sweltering = 'Sweltering',
 }
-// Cold = Frio #
-// Freezing = Congelante ##
-// Warm = Ardente ##
-// Hot = Quente ##
-// Mild = Suave ##
-// Balmy = abafado #
-// Sweltering = Sufocante
