@@ -4,7 +4,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers'
-// import { DateField } from '@mui/x-date-pickers/DateField'
 import { DatePickerProps } from './@types'
 import * as S from './DatePickerStyled'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -15,6 +14,7 @@ export const DateTimePickerComponent = ({
   isSecudary,
   handleDate,
   placeholder,
+  ...rest
 }: DatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -23,6 +23,7 @@ export const DateTimePickerComponent = ({
           <DatePicker onChange={handleDate} openTo="year" views={['year']} />
         ) : (
           <DateTimePicker
+            {...rest}
             label={placeholder}
             onChange={handleDate}
             viewRenderers={{

@@ -1,13 +1,14 @@
-import { itenSideBarType } from '@/components/modules/SideBar/@types'
-import { Links } from '@/mocks/Links'
 import {
   CarType,
   ClientType,
+  DisplacementType,
   DriverType,
   PostCarType,
   PostClientType,
+  PostDisplacementType,
   PostDriverType,
   PutCarType,
+  PutDisplacementType,
   PutDriverType,
 } from '@/pages/@types'
 import axios from 'axios'
@@ -15,19 +16,6 @@ import axios from 'axios'
 
 const baseUrl = 'https://api-deslocamento.herokuapp.com/api/v1/'
 
-export const getRoutes = async (): Promise<itenSideBarType[]> => {
-  const useMock = true
-  if (useMock) {
-    return Promise.resolve(Links)
-  }
-  try {
-    const response = await axios.get('')
-    return response.data
-  } catch (error) {
-    console.error(error)
-    throw error
-  }
-}
 export const getClient = async (id: number): Promise<ClientType> => {
   try {
     const response = await axios.get(`${baseUrl}Cliente/${id}`)
@@ -197,6 +185,72 @@ export const putCars = async (driverData: PutCarType) => {
     const response = await axios.put(`${baseUrl}Veiculo/${driverData.id}`, {
       ...driverData,
     })
+    return response
+  } catch (error) {
+    console.error('Error sending request UPDATE:', error)
+    throw error
+  }
+}
+
+export const getDisplacements = async (): Promise<DisplacementType[]> => {
+  try {
+    const response = await axios.get(`${baseUrl}Deslocamento`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('Error when getting cars:', error)
+    throw error
+  }
+}
+export const getDisplacement = async (
+  id: number,
+): Promise<DisplacementType> => {
+  try {
+    const response = await axios.get(`${baseUrl}Deslocamento/${id}`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('Error when getting car:', error)
+    throw error
+  }
+}
+export const postDisplacement = async (driverData: PostDisplacementType) => {
+  try {
+    const response = await axios.post(
+      `${baseUrl}Deslocamento/IniciarDeslocamento`,
+      driverData,
+    )
+    return response.status
+  } catch (error) {
+    console.error('Error sending request POST:', error)
+    throw error
+  }
+}
+export const deleteDisplacements = async (id: number) => {
+  try {
+    const deleteRequest: {
+      id: number
+    } = {
+      id,
+    }
+
+    const response = await axios.delete(`${baseUrl}Deslocamento/${id}`, {
+      data: deleteRequest,
+    })
+    return response.status as number
+  } catch (error) {
+    console.error('Error sending request DELETE:', error)
+    throw error
+  }
+}
+export const putDisplacements = async (driverData: PutDisplacementType) => {
+  try {
+    const response = await axios.put(
+      `${baseUrl}Veiculo/${driverData.id}/EncerrarDeslocamento`,
+      {
+        ...driverData,
+      },
+    )
     return response
   } catch (error) {
     console.error('Error sending request UPDATE:', error)

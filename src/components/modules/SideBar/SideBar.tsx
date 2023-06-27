@@ -1,52 +1,34 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import * as S from './SideBarStyled'
 import { MenuContext } from '@/state/menu/state'
 import { itenSideBarType } from './@types'
 import { Actions } from '@/state/menu/@types/actions'
-import { getRoutes } from '@/services/service'
-import { SideBarSkeleton } from '../Skeletons'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Links } from '@/mocks/Links'
 
 const SideBar = () => {
-  const { push } = useRouter()
-  const [loading, setLoading] = useState(true)
   const { state, dispatch } = useContext(MenuContext)
-  const [routes, setRoutes] = useState<itenSideBarType[]>([])
+  const [routes] = useState<itenSideBarType[]>(Links)
 
-  const handleRouter = (tab: itenSideBarType): void => {
-    push(tab.router)
-
+  const handleRouter = (item: string): void => {
     dispatch({
       type: Actions.SET_MENU,
       payload: {
         ...state.user,
-        selected: tab.key,
+        selected: item,
       },
     })
   }
-
-  const getRoutesSideBar = async () => {
-    const response = await getRoutes()
-    setRoutes(response)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    getRoutesSideBar()
-  }, [])
-
   return (
     <S.SideBarContainer>
-      {loading ? (
-        <SideBarSkeleton />
-      ) : (
-        <S.ContainerCards show={state.menu.open}>
-          {routes.map((item) => {
-            return (
+      <S.ContainerCards show={state.menu.open}>
+        {routes.map((item) => {
+          return (
+            <Link key={item.key} href={item.router}>
               <S.SideBarItem
                 key={item.key}
                 active={state.menu.selected === item.key}
-                onClick={() => handleRouter(item)}
+                onClick={() => handleRouter(item.key)}
               >
                 <S.Icon
                   src={item.icon}
@@ -56,10 +38,10 @@ const SideBar = () => {
                 {state.menu.selected === item.key && <S.Line />}
                 <S.FloatingDescription>{item.name}</S.FloatingDescription>
               </S.SideBarItem>
-            )
-          })}
-        </S.ContainerCards>
-      )}
+            </Link>
+          )
+        })}
+      </S.ContainerCards>
     </S.SideBarContainer>
   )
 }

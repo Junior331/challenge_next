@@ -1,5 +1,4 @@
 import { FormikErrors, FormikTouched } from 'formik'
-import { useEffect, useState } from 'react'
 import { parseISO, format } from 'date-fns'
 
 export const hasError = (
@@ -11,14 +10,10 @@ export const hasError = (
 }
 
 export const useFormattedDate = (dateString: string) => {
-  const [formattedDate, setFormattedDate] = useState('')
-
-  useEffect(() => {
+  if (dateString && dateString === '') {
     const date = parseISO(dateString)
-    const formatted = format(date, 'yyyy-MM-dd HH:mm:ss')
-
-    setFormattedDate(formatted)
-  }, [dateString])
-
-  return formattedDate
+    return format(date, 'yyyy-MM-dd HH:mm:ss')
+  } else {
+    return ''
+  }
 }

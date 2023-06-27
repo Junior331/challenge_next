@@ -35,6 +35,36 @@ export const DialogComponent = styled(Dialog)`
       -webkit-text-fill-color: #ffffff !important;
     }
   }
+  .MuiStack-root {
+    margin-bottom: 25px;
+    input {
+      color: #fff;
+      font-size: 12px;
+      padding: 12px 14px;
+      &:-placeholder {
+        color: #fff;
+      }
+    }
+    label {
+      font-size: 12px;
+      margin-top: -5px;
+      color: #9996a3;
+      transition: none;
+    }
+    label.Mui-focused,
+    .MuiInputLabel-shrink {
+      margin-top: -10px;
+    }
+
+    label.Mui-focused,
+    legend {
+      display: none;
+      transition: none;
+    }
+    .MuiSvgIcon-root {
+      fill: #a69fbb;
+    }
+  }
 `
 export const CardContentComponent = styled(CardContent)({
   display: 'flex',

@@ -19,32 +19,10 @@ export const SideBarContainer = styled(ContainerGeneric)<{ show?: boolean }>`
   justify-content: flex-start;
   background-color: #29233d;
   transition: all 0.4s ease-out;
-
-  ${({ show }) => media.lessThan('large')`
-    top: 65px;
-    z-index: 5;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    border-radius: 0;
-    overflow: hidden auto;
-    transition: all 0.4s ease-out;
-
-    ${
-      show &&
-      css`
-        left: 0px;
-      `
-    }
-  `}
 `
 export const Logo = styled.img`
   max-width: 60px;
   cursor: pointer;
-  ${media.lessThan('large')`
-    display: none;
-  `}
 `
 export const Icon = styled.img<{ active?: boolean }>`
   z-index: 1;
@@ -61,10 +39,8 @@ export const ContainerCards = styled.div<{ show?: boolean }>`
   display: flex;
   position: sticky;
   flex-direction: column;
-
-  ${media.lessThan('large')`
-    width: 95%;
-    padding-bottom: 30px;
+  ${media.lessThan('small')`
+    zoom: 75%;
   `}
 `
 export const FloatingDescription = styled.p`
@@ -93,15 +69,6 @@ export const FloatingDescription = styled.p`
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
   }
-
-  ${media.lessThan('large')`
-    opacity: 1;
-    background: none;
-    position: initial;
-    ::after {
-      content: none;
-    }
-  `}
 `
 export const SideBarItem = styled.div<{ active?: boolean }>`
   width: 60px;
@@ -122,21 +89,6 @@ export const SideBarItem = styled.div<{ active?: boolean }>`
     left: 65px;
     transition: opacity 0.4s ease-out;
   }
-
-  ${({ active }) => media.lessThan('large')`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-
-    ${
-      active &&
-      css`
-        background-color: #7e68cc;
-      `
-    }
-  `}
 `
 export const Line = styled(ContainerGeneric)`
   width: 3px;
@@ -148,12 +100,4 @@ export const Line = styled(ContainerGeneric)`
   background-position: center;
   background-repeat: no-repeat;
   position: absolute !important;
-
-  ${media.lessThan('large')`
-    background-image: none;
-  `}
-
-  ${media.greaterThan('huge')`
-    width: 2.5px;
-  `}
 `

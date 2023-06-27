@@ -73,3 +73,33 @@ export type PutCarType = {
   marcaModelo: string
   anoFabricacao: number
 }
+
+export type DisplacementType = {
+  id: number
+  motivo: string
+  kmFinal: number
+  kmInicial: number
+  idVeiculo: number
+  idCliente: number
+  checkList: string
+  observacao: string
+  idCondutor: number
+  fimDeslocamento: string
+  inicioDeslocamento: string
+}
+export type PostDisplacementType = {
+  motivo: string
+  idVeiculo: number
+  idCliente: number
+  checkList: string
+  kmInicial: number
+  observacao: string
+  idCondutor: number
+  inicioDeslocamento: string
+}
+export type PutDisplacementType = {
+  id: number
+  kmFinal: number
+  observacao: string
+  fimDeslocamento: string
+}

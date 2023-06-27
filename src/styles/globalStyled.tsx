@@ -20,4 +20,19 @@ export const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: auto;
   }
+
+  .MuiPaper-root {
+    background-color: #29233d !important;
+    .MuiButtonBase-root, .MuiPickersCalendarHeader-label {
+      color: #fff;
+    }
+    .MuiDayCalendar-header{
+      .MuiTypography-root{
+        color: #fff;
+      }
+    }
+  }
+  .MuiList-root li {
+    color: #fff;
+  }
 `

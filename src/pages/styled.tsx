@@ -49,6 +49,9 @@ export const MainContainer = styled(Container)({
   flexDirection: 'column',
   maxWidth: '100% !important',
   padding: '20px 24px !important',
+  '@media (max-width: 430px)': {
+    padding: '10px 8px !important',
+  },
 })
 export const ContainerCardComponent = styled(Container)({
   gap: 20,
@@ -68,14 +71,23 @@ export const ContainerCardComponent = styled(Container)({
     borderRadius: 10,
     background: '#a8a8a8',
   },
+  '@media (max-width: 430px)': {
+    maxHeight: '100vh',
+    padding: '10px 0px !important',
+  },
 })
-export const CardComponent = styled(Card)({
-  width: '100%',
-  maxWidth: 250,
-  minHeight: 308,
-  cursor: 'pointer',
-  backgroundColor: 'rgb(41, 35, 61)',
-})
+export const CardComponent = styled(Card)<{ larger?: boolean }>`
+  width: 100%;
+  max-width: 250px;
+  min-height: 308px;
+  cursor: pointer;
+  background-color: rgb(41, 35, 61);
+  ${(props) =>
+    props.larger &&
+    css`
+      max-width: 320px;
+    `};
+`
 export const LinkComponent = styled(Link)({
   width: '100%',
   display: 'flex',

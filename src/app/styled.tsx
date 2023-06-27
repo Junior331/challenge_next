@@ -1,3 +1,4 @@
+import media from '@/styles/breakpoints'
 import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
@@ -16,4 +17,7 @@ export const LayoutContent = styled.div`
   max-width: 100%;
   align-items: flex-start;
   justify-content: flex-end;
+  ${media.lessThan('small')`
+    zoom: 85%;
+  `}
 `

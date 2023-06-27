@@ -3,7 +3,7 @@ import { Container, Typography } from '@mui/material'
 
 export const TextErro = styled(Typography)({
   width: '100%',
-  color: 'red',
+  color: 'red !important',
   fontWeight: 500,
   marginTop: '-3px',
   fontSize: '1.2rem',
@@ -21,7 +21,7 @@ export const ContainerInput = styled(Container)<{ error?: boolean }>`
   .MuiFormControl-root {
     margin: 0;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   ${(props) =>
     props.error &&

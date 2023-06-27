@@ -3,15 +3,15 @@ import { Slide } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { TransitionProps } from '@mui/material/transitions'
 import { FormikValues } from 'formik'
-import * as S from './ModalAddDriveStyled'
-import { ModalType } from '../@types'
-import { postDriver } from '@/services/service'
+import * as S from '../ModalStyled'
+import { ModalType } from '../../@types'
+import { postCar } from '@/services/service'
 import { MessageContext } from '@/state/modalMessage/state'
 import { Actions } from '@/state/modalMessage/@types/actions'
 import { DateTimePickerComponent, Input } from '@/components/elements'
 import { hasError } from '@/utils/utils'
-import { driverSchema } from '@/validations/driverSchema'
-import { PostDriverType } from '@/pages/@types'
+import { carSchema } from '@/validations/carSchema'
+import { PostCarType } from '@/pages/@types'
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -22,29 +22,28 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const ModalAddDriver = ({
+const ModalAddCar = ({
   isOpen = false,
   handleClose = () => {},
   updateState = () => {},
 }: ModalType) => {
   const [open] = useState(isOpen)
-
-  const [date, setDate] = useState<string>(new Date().toISOString())
+  const [date, setDate] = useState<number>(new Date().getFullYear())
   const { dispatch } = useContext(MessageContext)
   const closeModal = () => {
     handleClose(!open)
   }
 
   const handlePost = async (values: FormikValues) => {
-    const driverData: PostDriverType = {
-      nome: values.nome,
-      vencimentoHabilitacao: date,
-      numeroHabilitacao: values.numeroHabilitacao,
-      categoriaHabilitacao: values.catergoriaHabilitacao,
+    const carData: PostCarType = {
+      placa: values.placa,
+      anoFabricacao: date,
+      kmAtual: values.kmAtual,
+      marcaModelo: values.marcaModelo,
     }
 
     try {
-      await postDriver(driverData)
+      await postCar(carData)
       closeModal()
       updateState(true)
       dispatch({
@@ -52,7 +51,7 @@ const ModalAddDriver = ({
         payload: {
           open: true,
           type: 'success',
-          message: 'Driver successfully registered',
+          message: 'Car successfully registered',
         },
       })
     } catch (error) {
@@ -69,12 +68,13 @@ const ModalAddDriver = ({
       })
     }
   }
-  const handleDate = async (values: Date | null) => {
+
+  const handleChange = async (values: Date | null) => {
     const originalDate = new Date(values?.toString() || '')
-    const formattedDate = originalDate.toISOString()
+    const formattedDate = originalDate.getFullYear()
+    console.log(formattedDate)
     setDate(formattedDate)
   }
-
   return (
     <S.DialogComponent
       keepMounted
@@ -87,42 +87,43 @@ const ModalAddDriver = ({
         <S.CardContentComponent>
           <S.FormikComponent
             initialValues={{
-              nome: '',
-              numeroHabilitacao: '',
-              catergoriaHabilitacao: '',
-              vencimentoHabilitacao: date,
+              placa: '',
+              kmAtual: '',
+              marcaModelo: '',
+              anoFabricacao: date,
             }}
             onSubmit={handlePost}
-            validationSchema={driverSchema}
+            validationSchema={carSchema}
           >
             {({ handleBlur, errors, touched }) => (
               <S.FormComponent>
                 <Input
-                  nome="nome"
-                  placeholder="Nome"
+                  nome="marcaModelo"
+                  placeholder="Model"
                   onBlur={handleBlur}
-                  helpText={errors?.nome as string}
-                  error={hasError(errors, touched, 'nome')}
+                  helpText={errors?.marcaModelo as string}
+                  error={hasError(errors, touched, 'marcaModelo')}
                 />
                 <Input
                   onBlur={handleBlur}
-                  nome="numeroHabilitacao"
-                  placeholder="Numero da Habilitação"
-                  helpText={errors?.numeroHabilitacao as string}
-                  error={hasError(errors, touched, 'numeroHabilitacao')}
+                  nome="kmAtual"
+                  placeholder="KM"
+                  helpText={errors?.kmAtual as string}
+                  error={hasError(errors, touched, 'kmAtual')}
                 />
                 <Input
                   onBlur={handleBlur}
-                  nome="catergoriaHabilitacao"
-                  placeholder="Categoria da Habilitação"
-                  helpText={errors?.catergoriaHabilitacao as string}
-                  error={hasError(errors, touched, 'catergoriaHabilitacao')}
+                  nome="placa"
+                  placeholder="Place"
+                  helpText={errors?.placa as string}
+                  error={hasError(errors, touched, 'placa')}
                 />
                 <DateTimePickerComponent
-                  handleDate={handleDate}
-                  placeholder={'Vencimento da Habilitação'}
-                  helpText={errors?.vencimentoHabilitacao as string}
-                  error={hasError(errors, touched, 'vencimentoHabilitacao')}
+                  isSecudary
+                  handleDate={handleChange}
+                  placeholder={'Fabrication'}
+                  helpText={errors?.anoFabricacao as string}
+                  error={hasError(errors, touched, 'anoFabricacao')}
                 />
                 <LoadingButton
                   startIcon
@@ -141,4 +142,4 @@ const ModalAddDriver = ({
   )
 }
 
-export default ModalAddDriver
+export default ModalAddCar
