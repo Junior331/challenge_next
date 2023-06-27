@@ -1,5 +1,7 @@
 import { FormikErrors, FormikTouched } from 'formik'
 import { parseISO, format } from 'date-fns'
+import React, { useEffect, useRef } from 'react'
+import lottie from 'lottie-web'
 
 export const hasError = (
   errors: FormikErrors<any>,
@@ -17,3 +19,23 @@ export const useFormattedDate = (dateString: string) => {
     return ''
   }
 }
+
+const LottieAnimation = (animationPath: string) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (containerRef.current) {
+      lottie.loadAnimation({
+        container: containerRef.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: animationPath,
+      })
+    }
+  }, [animationPath])
+
+  return <div ref={containerRef}></div>
+}
+
+export default LottieAnimation

@@ -175,14 +175,7 @@ const ModalAddDisplacement = ({
             onSubmit={handlePost}
             validationSchema={displacementSchema}
           >
-            {({
-              handleBlur,
-              errors,
-              touched,
-              isValid,
-              setFieldValue,
-              values,
-            }) => (
+            {({ handleBlur, errors, touched, setFieldValue }) => (
               <S.FormComponent>
                 <Input
                   nome="motivo"
@@ -244,7 +237,6 @@ const ModalAddDisplacement = ({
                   type="submit"
                   variant="contained"
                   loadingPosition="start"
-                  // disabled={!isValid}
                 >
                   Save
                 </LoadingButton>
