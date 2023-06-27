@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { CarType, PutCarType, paramsProps } from '../@types'
 import * as S from '../subStyles'
 import {

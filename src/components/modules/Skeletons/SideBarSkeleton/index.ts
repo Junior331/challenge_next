@@ -1,3 +1,3 @@
-import SideBarSkeleton from './SideBarSkeleton';
+import SideBarSkeleton from './SideBarSkeleton'
 
-export { SideBarSkeleton };
+export { SideBarSkeleton }
