@@ -2,6 +2,7 @@ import { FormikErrors, FormikTouched } from 'formik'
 import { parseISO, format } from 'date-fns'
 import React, { useEffect, useRef } from 'react'
 import lottie from 'lottie-web'
+import { LottieAnimationProps } from '@/pages/@types'
 
 export const hasError = (
   errors: FormikErrors<any>,
@@ -20,7 +21,7 @@ export const useFormattedDate = (dateString: string) => {
   }
 }
 
-const LottieAnimation = (animationPath: string) => {
+export const LottieAnimation = ({ animationPath }: LottieAnimationProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -37,5 +38,3 @@ const LottieAnimation = (animationPath: string) => {
 
   return <div ref={containerRef}></div>
 }
-
-export default LottieAnimation

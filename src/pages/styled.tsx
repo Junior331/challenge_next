@@ -76,7 +76,10 @@ export const ContainerCardComponent = styled(Container)({
     padding: '10px 0px !important',
   },
 })
-export const CardComponent = styled(Card)<{ larger?: boolean }>`
+export const CardComponent = styled(Card)<{
+  larger?: boolean
+  segundary?: boolean
+}>`
   width: 100%;
   max-width: 250px;
   min-height: 308px;
@@ -87,6 +90,12 @@ export const CardComponent = styled(Card)<{ larger?: boolean }>`
     css`
       max-width: 320px;
     `};
+  ${(props) =>
+    props.segundary &&
+    css`
+      cursor: initial;
+      border: none;
+    `};
 `
 export const LinkComponent = styled(Link)({
   width: '100%',
@@ -96,9 +105,10 @@ export const LinkComponent = styled(Link)({
   flexDirection: 'column',
 })
 export const CardContentComponent = styled(CardContent)`
+  height: auto;
   display: flex;
-  align-items: center;
   position: relative;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   form {
@@ -132,16 +142,24 @@ export const CardContentComponent = styled(CardContent)`
     -webkit-text-fill-color: #ffffff !important;
   }
 `
-export const BoxComponent = styled(Box)(({ theme }) => ({
-  width: 60,
-  height: 60,
-  padding: 4,
-  display: 'flex',
-  borderRadius: '50%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: `1px solid ${theme.palette.common.white}`,
-}))
+export const BoxComponent = styled(Box)<{ segundary?: boolean }>`
+  width: 60px;
+  height: 60px;
+  padding: 4px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  ${(props) =>
+    props.segundary &&
+    css`
+      width: 130px;
+      border: none;
+      height: 130px;
+      flex-direction: column;
+    `};
+`
 export const Title = styled(Typography)({
   color: '#fff',
   fontWeight: 700,
@@ -244,3 +262,36 @@ export const CardActionAreaComponent = styled(CardActionArea)({
 })
 export const FormikComponent = styled(Formik)({})
 export const FormComponent = styled(Form)({})
+export const Footer = styled(Container)({
+  width: '100%',
+  marginTop: 20,
+  display: 'flex',
+  flex: '1 1 100px',
+  alignItems: 'center',
+  flexDirection: 'column',
+  padding: '0px !important',
+  maxWidth: '100% !important',
+  justifyContent: 'space-between',
+})
+export const ContainerIcon = styled(Container)({
+  gap: 5,
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0px !important',
+  justifyContent: 'space-between',
+  h5: {
+    marginTop: '0',
+  },
+})
+export const ContainerText = styled(Container)({
+  gap: 5,
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
+  padding: '0px !important',
+  justifyContent: 'space-between',
+})
+export const Icon = styled(Avatar)`
+  max-width: 40px;
+  border-radius: 0px;
+`

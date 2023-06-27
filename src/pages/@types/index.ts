@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { ReactNode } from 'react'
 
 export type styleProps = {
@@ -103,3 +104,31 @@ export type PutDisplacementType = {
   observacao: string
   fimDeslocamento: string
 }
+export type WeatherType = {
+  date: string
+  summary: string
+  temperatureC: number
+  temperatureF: number
+}
+export type LottieAnimationProps = {
+  animationPath: string
+}
+export enum IconWeather {
+  Hot = 'Hot',
+  Warm = 'Hot',
+  Cool = 'Cold',
+  Mild = 'Mild',
+  Chilly = 'Cold',
+  Bracing = 'Cold',
+  Scorching = 'Warm',
+  Balmy = 'Sweltering',
+  Freezing = 'Freezing',
+  Sweltering = 'Sweltering',
+}
+// Cold = Frio #
+// Freezing = Congelante ##
+// Warm = Ardente ##
+// Hot = Quente ##
+// Mild = Suave ##
+// Balmy = abafado #
+// Sweltering = Sufocante

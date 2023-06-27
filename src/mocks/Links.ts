@@ -26,4 +26,10 @@ export const Links: itenSideBarType[] = [
     icon: icons.cars,
     router: '/cars',
   },
+  {
+    key: 'weathers',
+    name: 'Weathers',
+    icon: icons.weathers,
+    router: '/weathers',
+  },
 ]

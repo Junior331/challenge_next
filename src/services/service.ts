@@ -10,6 +10,7 @@ import {
   PutCarType,
   PutDisplacementType,
   PutDriverType,
+  WeatherType,
 } from '@/pages/@types'
 import axios from 'axios'
 // import axios from 'axios'
@@ -254,6 +255,17 @@ export const putDisplacements = async (driverData: PutDisplacementType) => {
     return response
   } catch (error) {
     console.error('Error sending request UPDATE:', error)
+    throw error
+  }
+}
+
+export const getWeather = async (): Promise<WeatherType[]> => {
+  try {
+    const response = await axios.get(`${baseUrl}WeatherForecast`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('Error when getting cars:', error)
     throw error
   }
 }
