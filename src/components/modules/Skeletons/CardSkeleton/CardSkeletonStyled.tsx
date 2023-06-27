@@ -32,7 +32,6 @@ export const ContainerSkeleton = styled.div`
   padding: 16px;
   display: flex;
   height: 308px;
-  max-width: 250px;
   position: relative;
   border-radius: 4px;
   align-items: center;

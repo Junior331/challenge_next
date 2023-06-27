@@ -57,9 +57,8 @@ export const Car = ({ params }: paramsProps) => {
       await deleteCars(parseFloat(params.id))
       handleMessage('Car successfully deleted', 'success', true)
       push('/cars')
-    } catch (error) {
-      // console.error('Error sending request DELETE:', error)
-      handleMessage('Delete failed, try again later', 'error', true)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
   const handlePutCar = async (values: FormikValues) => {

@@ -63,9 +63,8 @@ export const Displacement = ({ params }: paramsProps) => {
       await deleteDisplacements(parseFloat(params.id))
       handleMessage('Displacement successfully deleted', 'success', true)
       push('/displacements')
-    } catch (error) {
-      // console.error('Error sending request DELETE:', error)
-      handleMessage('Delete failed, try again later', 'error', true)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
   const handlePutDisplacement = async (values: FormikValues) => {

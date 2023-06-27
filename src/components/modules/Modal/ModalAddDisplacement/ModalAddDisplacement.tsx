@@ -50,6 +50,16 @@ const ModalAddDisplacement = ({
   const closeModal = () => {
     handleClose(!open)
   }
+  const handleMessage = (message = '', type = '', open = false) => {
+    dispatch({
+      type: Actions.SET_MESSAGE,
+      payload: {
+        open,
+        type,
+        message,
+      },
+    })
+  }
 
   const handlePost = async (values: FormikValues) => {
     const displacementData: PostDisplacementType = {
@@ -67,26 +77,11 @@ const ModalAddDisplacement = ({
       await postDisplacement(displacementData)
       closeModal()
       updateState(true)
-      dispatch({
-        type: Actions.SET_MESSAGE,
-        payload: {
-          open: true,
-          type: 'success',
-          message: 'Displacement successfully registered',
-        },
-      })
+      handleMessage('Displacement successfully registered', 'success', true)
     } catch (error) {
-      console.error('Error sending request DELETE:', error)
       closeModal()
       updateState(true)
-      dispatch({
-        type: Actions.SET_MESSAGE,
-        payload: {
-          open: true,
-          type: 'error',
-          message: 'Registration failed, try again later',
-        },
-      })
+      handleMessage('Registration failed, try again later', 'error', true)
     }
   }
   const handleDate = async (
@@ -126,8 +121,8 @@ const ModalAddDisplacement = ({
         }
       })
       setDrivers(newList)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
 
@@ -141,8 +136,8 @@ const ModalAddDisplacement = ({
         }
       })
       setClients(newList)
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
   useEffect(() => {

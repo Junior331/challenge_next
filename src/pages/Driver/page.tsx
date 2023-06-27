@@ -57,9 +57,8 @@ export const Driver = ({ params }: paramsProps) => {
       await deleteDrivers(parseFloat(params.id))
       handleMessage('Driver successfully deleted', 'success', true)
       push('/drivers')
-    } catch (error) {
-      // console.error('Error sending request DELETE:', error)
-      handleMessage('Delete failed, try again later', 'error', true)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
   const handlePutDriver = async (values: FormikValues) => {
@@ -71,11 +70,11 @@ export const Driver = ({ params }: paramsProps) => {
     }
 
     try {
-      await putDrivers(driverData)
+      const result = await putDrivers(driverData)
       setIsSave(false)
       setLoading(true)
       setIsEdit(!isEdit)
-      handleMessage('Driver successfully updated', 'success', true)
+      handleMessage(result.response.data, 'success', true)
     } catch (error: any) {
       setIsSave(false)
       setIsEdit(!isEdit)

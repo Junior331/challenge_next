@@ -55,7 +55,6 @@ const ModalAddCar = ({
         },
       })
     } catch (error) {
-      console.error('Error sending request DELETE:', error)
       closeModal()
       updateState(true)
       dispatch({

@@ -57,13 +57,13 @@ export const Drivers = () => {
                   </S.BoxComponent>
                   <S.Title variant="h5">{driver.nome}</S.Title>
                   <S.Text variant="h5">
-                    Numero: {driver.numeroHabilitacao}
+                    Number: {driver.numeroHabilitacao}
                   </S.Text>
                   <S.Text variant="h5">
-                    Categoria: {driver.catergoriaHabilitacao}
+                    Category: {driver.catergoriaHabilitacao}
                   </S.Text>
                   <S.Text variant="h5">
-                    Vencimento: {driver.vencimentoHabilitacao}
+                    Due date: {driver.vencimentoHabilitacao}
                   </S.Text>
                 </S.LinkComponent>
               </S.CardContentComponent>

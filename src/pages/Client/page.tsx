@@ -60,9 +60,8 @@ export const Client = ({ params }: paramsProps) => {
       await deleteClients(parseFloat(params.id))
       handleMessage('Client successfully deleted', 'success', true)
       push('/')
-    } catch (error) {
-      // console.error('Error sending request DELETE:', error)
-      handleMessage('Delete failed, try again later', 'error', true)
+    } catch (error: any) {
+      handleMessage(error.response.data, 'error', true)
     }
   }
   const handlePutClient = async (values: FormikValues) => {
@@ -84,9 +83,9 @@ export const Client = ({ params }: paramsProps) => {
       setLoading(true)
       setIsEdit(!isEdit)
       handleMessage('Client successfully updated', 'success', true)
-    } catch (error) {
+    } catch (error: any) {
       setIsEdit(!isEdit)
-      handleMessage('Update failed, try again later', 'error', true)
+      handleMessage(error.response.data, 'error', true)
     }
   }
   useEffect(() => {

@@ -117,7 +117,8 @@ export const deleteDrivers = async (id: number) => {
     const response = await axios.delete(`${baseUrl}Condutor/${id}`, {
       data: deleteRequest,
     })
-    return response.status as number
+    console.log(response)
+    return response.data
   } catch (error) {
     console.error('Error sending request DELETE:', error)
     throw error
@@ -128,7 +129,7 @@ export const putDrivers = async (driverData: PutDriverType) => {
     const response = await axios.put(`${baseUrl}Condutor/${driverData.id}`, {
       ...driverData,
     })
-    return response
+    return response.data
   } catch (error) {
     console.error('Error sending request UPDATE:', error)
     throw error

@@ -39,6 +39,7 @@ const StyledAvatar = styled(Avatar)(
 export const MainContainer = styled(Container)({
   gap: 20,
   display: 'flex',
+  flexWrap: 'wrap',
   position: 'relative',
   maxWidth: '100% !important',
   padding: '40px 30px !important',
@@ -59,11 +60,12 @@ export const CardComponent = styled(Card)({
   width: '100%',
   minHeight: 308,
   padding: '20px',
+  flex: '1 1 83.5%',
   backgroundColor: 'rgb(41, 35, 61)',
 })
 export const CardCenterComponent = styled(CardComponent)({
-  maxWidth: 250,
   display: 'flex',
+  flex: '1 1 250px',
   padding: '20px 10px',
   alignItems: 'center',
   flexDirection: 'column',

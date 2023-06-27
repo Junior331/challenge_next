@@ -60,10 +60,10 @@ export const Clients = () => {
                     {client.tipoDocumento.toUpperCase()}:{' '}
                     {client.numeroDocumento}
                   </S.Text>
-                  <S.Text variant="h5">Logradouro: {client.logradouro}</S.Text>
-                  <S.Text variant="h5">Numero: {client.numero}</S.Text>
-                  <S.Text variant="h5">Bairro: {client.bairro}</S.Text>
-                  <S.Text variant="h5">Cidade: {client.cidade}</S.Text>
+                  <S.Text variant="h5">Address: {client.logradouro}</S.Text>
+                  <S.Text variant="h5">Number: {client.numero}</S.Text>
+                  <S.Text variant="h5">Neighborhood: {client.bairro}</S.Text>
+                  <S.Text variant="h5">City: {client.cidade}</S.Text>
                   <S.Text variant="h5">UF: {client.uf}</S.Text>
                 </S.LinkComponent>
               </S.CardContentComponent>

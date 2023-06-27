@@ -55,8 +55,7 @@ const ModalAddDriver = ({
           message: 'Driver successfully registered',
         },
       })
-    } catch (error) {
-      console.error('Error sending request DELETE:', error)
+    } catch (error: any) {
       closeModal()
       updateState(true)
       dispatch({

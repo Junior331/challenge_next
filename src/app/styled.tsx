@@ -19,5 +19,7 @@ export const LayoutContent = styled.div`
   justify-content: flex-end;
   ${media.lessThan('small')`
     zoom: 85%;
+    max-height: 100vh;
+    overflow-y: scroll;
   `}
 `
