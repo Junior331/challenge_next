@@ -87,7 +87,6 @@ export const Car = ({ params }: paramsProps) => {
   const handleChange = async (values: Date | null) => {
     const originalDate = new Date(values?.toString() || '')
     const formattedDate = originalDate.getFullYear()
-    console.log(formattedDate)
     setDate(formattedDate)
   }
 
