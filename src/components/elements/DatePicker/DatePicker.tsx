@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
@@ -18,7 +17,7 @@ export const DateTimePickerComponent = ({
 }: DatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DateTimePicker', 'DateTimePicker']}>
+      <S.ContainerComponent>
         {isSecudary ? (
           <DatePicker onChange={handleDate} openTo="year" views={['year']} />
         ) : (
@@ -33,7 +32,7 @@ export const DateTimePickerComponent = ({
             }}
           />
         )}
-      </DemoContainer>
+      </S.ContainerComponent>
       {error && <S.TextErro variant="h5">{helpText}</S.TextErro>}
     </LocalizationProvider>
   )

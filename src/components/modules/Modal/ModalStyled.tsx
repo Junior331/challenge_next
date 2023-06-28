@@ -35,7 +35,7 @@ export const DialogComponent = styled(Dialog)`
       -webkit-text-fill-color: #ffffff !important;
     }
   }
-  .MuiStack-root {
+  .MuiContainer-root {
     margin-bottom: 25px;
     input {
       color: #fff;
@@ -53,7 +53,7 @@ export const DialogComponent = styled(Dialog)`
     }
     label.Mui-focused,
     .MuiInputLabel-shrink {
-      margin-top: -10px;
+      display: none;
     }
 
     label.Mui-focused,

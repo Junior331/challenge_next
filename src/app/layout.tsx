@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-page-custom-font */
 'use client'
 
 import { SideBar } from '@/components/modules/SideBar'
