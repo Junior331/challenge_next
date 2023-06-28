@@ -26,12 +26,12 @@ Desenvolver uma aplicação front-end utilizando Next.js com TypeScript e a bibl
 
 #### O Produto
  #Clints
- ![Alt text](image.png)
+ ![image](https://github.com/Junior331/challenge_next/assets/37476883/b26e1662-c80a-4934-addd-9f43972742e0)
  #Drivers
- ![Alt text](image-4.png)
+ ![image](https://github.com/Junior331/challenge_next/assets/37476883/94f9c3cb-8ebf-4db4-b93a-2ba255e9200b)
  #Displacements
- ![Alt text](image-3.png)
+ ![image](https://github.com/Junior331/challenge_next/assets/37476883/9a3756ab-7227-4d2d-8ab6-aa7bae22678f)
  #Cars
- ![Alt text](image-2.png)
+ ![image](https://github.com/Junior331/challenge_next/assets/37476883/2f681792-96d9-4e5e-9182-54709b378488)
  #Weathers
- ![Alt text](image-1.png)
+ ![image](https://github.com/Junior331/challenge_next/assets/37476883/8a66050f-c447-4ca4-a83a-711beeb03244)
