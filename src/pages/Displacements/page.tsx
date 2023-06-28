@@ -2,12 +2,12 @@
 import { ModalAddDisplacement } from '@/components/modules'
 import { getDisplacements } from '@/services/service'
 import { useState, useEffect } from 'react'
-import { DisplacementType } from '../@types'
-import * as S from '../styled'
+import { DisplacementType } from '../../@types'
+import * as S from '@/styles/styled'
 import { CardSkeleton } from '@/components/modules/Skeletons'
 import { useFormattedDate } from '@/utils/utils'
 
-export const Displacements = () => {
+const Displacements = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [displacements, setDisplacements] = useState<DisplacementType[]>([])
@@ -105,3 +105,4 @@ export const Displacements = () => {
     </S.MainContainer>
   )
 }
+export default Displacements

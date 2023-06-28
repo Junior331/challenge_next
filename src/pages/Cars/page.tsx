@@ -1,11 +1,11 @@
+import * as S from '@/styles/styled'
 import { ModalAddCar } from '@/components/modules'
 import { getCars, randomIntFromInterval } from '@/services/service'
 import { useState, useEffect } from 'react'
-import { CarType } from '../@types'
-import * as S from '../styled'
+import { CarType } from '../../@types'
 import { CardSkeleton } from '@/components/modules/Skeletons'
 
-export const Car = () => {
+const Car = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [cars, setCars] = useState<CarType[]>([])
@@ -76,3 +76,4 @@ export const Car = () => {
     </S.MainContainer>
   )
 }
+export default Car

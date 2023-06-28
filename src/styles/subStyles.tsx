@@ -13,7 +13,7 @@ import {
   purple,
   indigo,
 } from '@mui/material/colors'
-import { AvatarImageProps } from './@types'
+import { AvatarImageProps, styleProps } from '../@types'
 import { Form, Formik } from 'formik'
 import { LoadingButton } from '@mui/lab'
 import Link from 'next/link'
@@ -110,7 +110,7 @@ export const ChevronLeftIconComponent = styled(ChevronLeftIcon)({
 export const AvatarImage = ({ colorIndex, children }: AvatarImageProps) => {
   return <StyledAvatar colorindex={colorIndex}>{children}</StyledAvatar>
 }
-export const ContainerInput = styled(Container)<{ error?: boolean }>`
+export const ContainerInput = styled(Container)<styleProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -192,7 +192,7 @@ export const Info = styled(Container)`
     }
   }
 `
-export const FormComponent = styled(Form)<{ isEdit?: boolean }>`
+export const FormComponent = styled(Form)<styleProps>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

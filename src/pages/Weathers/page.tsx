@@ -1,15 +1,15 @@
-import * as S from '../styled'
+import * as S from '@/styles/styled'
 import { useEffect, useState } from 'react'
 import { getWeather } from '@/services/service'
 
 // eslint-disable-next-line no-unused-vars
-import { IconWeather, WeatherType } from '../@types'
+import { IconWeather, WeatherType } from '../../@types'
 import { CardSkeleton } from '@/components/modules/Skeletons'
 import { LottieAnimation } from '@/utils/utils'
 import icons from '@/assets/img/icons'
 import { format, parseISO } from 'date-fns'
 
-export const Weathers = () => {
+const Weathers = () => {
   const [loading, setLoading] = useState(true)
 
   const [weather, setWeather] = useState<WeatherType[]>([])
@@ -79,3 +79,4 @@ export const Weathers = () => {
     </S.MainContainer>
   )
 }
+export default Weathers

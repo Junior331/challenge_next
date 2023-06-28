@@ -1,13 +1,13 @@
 import { getClients, randomIntFromInterval } from '@/services/service'
-import * as S from '../styled'
+import * as S from '@/styles/styled'
 import { useEffect, useState } from 'react'
 
 // eslint-disable-next-line no-unused-vars
-import { ClientType, PostClientType } from '../@types'
+import { ClientType, PostClientType } from '../../@types'
 import { CardSkeleton } from '@/components/modules/Skeletons'
 import { ModalAddClient } from '@/components/modules'
 
-export const Clients = () => {
+const Clients = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
 
@@ -84,3 +84,4 @@ export const Clients = () => {
     </S.MainContainer>
   )
 }
+export default Clients

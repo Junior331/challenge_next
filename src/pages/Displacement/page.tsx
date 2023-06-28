@@ -1,6 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { DisplacementType, PutDisplacementType, paramsProps } from '../@types'
-import * as S from '../subStyles'
+import {
+  DisplacementType,
+  PutDisplacementType,
+  paramsProps,
+} from '../../@types'
+import * as S from '@/styles/subStyles'
 import {
   deleteDisplacements,
   getDisplacement,
@@ -17,7 +21,7 @@ import { useRouter } from 'next/navigation'
 import { hasError } from '@/utils/utils'
 import { displacementSchema } from '@/validations/displacementSchema'
 
-export const Displacement = ({ params }: paramsProps) => {
+const Displacement = ({ params }: paramsProps) => {
   const { push } = useRouter()
   const [loading, setLoading] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
@@ -323,3 +327,4 @@ export const Displacement = ({ params }: paramsProps) => {
     </S.MainContainer>
   )
 }
+export default Displacement

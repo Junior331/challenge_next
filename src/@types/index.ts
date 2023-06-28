@@ -1,20 +1,25 @@
 /* eslint-disable no-unused-vars */
 import { ReactNode } from 'react'
 
-export type styleProps = {
+type styleProps = {
   size?: string
+  left?: string
+  error?: boolean
+  larger?: boolean
+  isEdit?: boolean
+  segundary?: boolean
 }
 
-export type paramsProps = {
+type paramsProps = {
   params: {
     id: string
   }
 }
-export type AvatarImageProps = {
+type AvatarImageProps = {
   colorIndex: number
   children: ReactNode
 }
-export type ClientType = {
+type ClientType = {
   id: number
   uf: string
   nome: string
@@ -25,7 +30,7 @@ export type ClientType = {
   tipoDocumento: string
   numeroDocumento: string
 }
-export type PostClientType = {
+type PostClientType = {
   uf: string
   nome: string
   numero: string
@@ -36,46 +41,46 @@ export type PostClientType = {
   numeroDocumento: string
 }
 
-export type DriverType = {
+type DriverType = {
   id: number
   nome: string
   numeroHabilitacao: string
   catergoriaHabilitacao: string
   vencimentoHabilitacao: string
 }
-export type PutDriverType = {
+type PutDriverType = {
   id: number
   categoriaHabilitacao: string
   vencimentoHabilitacao: string
 }
-export type PostDriverType = {
+type PostDriverType = {
   nome: string
   numeroHabilitacao: string
   categoriaHabilitacao: string
   vencimentoHabilitacao: string
 }
 
-export type CarType = {
+type CarType = {
   id: number
   placa: string
   kmAtual: number
   marcaModelo: string
   anoFabricacao: number
 }
-export type PostCarType = {
+type PostCarType = {
   placa: string
   kmAtual: number
   marcaModelo: string
   anoFabricacao: number
 }
-export type PutCarType = {
+type PutCarType = {
   id: number
   kmAtual: number
   marcaModelo: string
   anoFabricacao: number
 }
 
-export type DisplacementType = {
+type DisplacementType = {
   id: number
   motivo: string
   kmFinal: number
@@ -88,7 +93,7 @@ export type DisplacementType = {
   fimDeslocamento: string
   inicioDeslocamento: string
 }
-export type PostDisplacementType = {
+type PostDisplacementType = {
   motivo: string
   idVeiculo: number
   idCliente: number
@@ -98,22 +103,22 @@ export type PostDisplacementType = {
   idCondutor: number
   inicioDeslocamento: string
 }
-export type PutDisplacementType = {
+type PutDisplacementType = {
   id: number
   kmFinal: number
   observacao: string
   fimDeslocamento: string
 }
-export type WeatherType = {
+type WeatherType = {
   date: string
   summary: string
   temperatureC: number
   temperatureF: number
 }
-export type LottieAnimationProps = {
+type LottieAnimationProps = {
   animationPath: string
 }
-export enum IconWeather {
+enum IconWeather {
   Hot = 'Hot',
   Warm = 'Hot',
   Cool = 'Cold',
@@ -125,3 +130,22 @@ export enum IconWeather {
   Freezing = 'Freezing',
   Sweltering = 'Sweltering',
 }
+export type {
+  CarType,
+  styleProps,
+  ClientType,
+  DriverType,
+  paramsProps,
+  PostCarType,
+  PutCarType,
+  WeatherType,
+  PutDriverType,
+  PostClientType,
+  PostDriverType,
+  DisplacementType,
+  AvatarImageProps,
+  PutDisplacementType,
+  LottieAnimationProps,
+  PostDisplacementType,
+}
+export { IconWeather }

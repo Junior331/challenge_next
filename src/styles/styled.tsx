@@ -22,7 +22,7 @@ import {
   purple,
   indigo,
 } from '@mui/material/colors'
-import { AvatarImageProps } from './@types'
+import { AvatarImageProps, styleProps } from '../@types'
 import { Form, Formik } from 'formik'
 import Link from 'next/link'
 
@@ -44,7 +44,7 @@ const StyledAvatar = styled(Avatar)(
     backgroundColor: colorsList[colorindex % colorsList.length],
   }),
 )
-export const MainContainer = styled(Container)({
+const MainContainer = styled(Container)({
   gap: 20,
   flexDirection: 'column',
   maxWidth: '100% !important',
@@ -53,7 +53,7 @@ export const MainContainer = styled(Container)({
     padding: '10px 8px !important',
   },
 })
-export const ContainerCardComponent = styled(Container)({
+const ContainerCardComponent = styled(Container)({
   gap: 20,
   display: 'flex',
   flexWrap: 'wrap',
@@ -76,10 +76,7 @@ export const ContainerCardComponent = styled(Container)({
     padding: '10px 0px !important',
   },
 })
-export const CardComponent = styled(Card)<{
-  larger?: boolean
-  segundary?: boolean
-}>`
+const CardComponent = styled(Card)<styleProps>`
   width: 100%;
   max-width: 250px;
   min-height: 308px;
@@ -97,14 +94,14 @@ export const CardComponent = styled(Card)<{
       border: none;
     `};
 `
-export const LinkComponent = styled(Link)({
+const LinkComponent = styled(Link)({
   width: '100%',
   display: 'flex',
   alignItems: 'center',
   textDecoration: 'none',
   flexDirection: 'column',
 })
-export const CardContentComponent = styled(CardContent)`
+const CardContentComponent = styled(CardContent)`
   height: auto;
   display: flex;
   position: relative;
@@ -142,7 +139,7 @@ export const CardContentComponent = styled(CardContent)`
     -webkit-text-fill-color: #ffffff !important;
   }
 `
-export const BoxComponent = styled(Box)<{ segundary?: boolean }>`
+const BoxComponent = styled(Box)<styleProps>`
   width: 60px;
   height: 60px;
   padding: 4px;
@@ -160,26 +157,26 @@ export const BoxComponent = styled(Box)<{ segundary?: boolean }>`
       flex-direction: column;
     `};
 `
-export const Title = styled(Typography)({
+const Title = styled(Typography)({
   color: '#fff',
   fontWeight: 700,
   margin: '5px 0',
   fontSize: '2rem',
 })
-export const Text = styled(Typography)({
+const Text = styled(Typography)({
   width: '100%',
   fontWeight: 500,
   marginTop: '10px',
   fontSize: '1.4rem',
   color: '#9996a3',
 })
-export const TextErro = styled(Text)({
+const TextErro = styled(Text)({
   color: 'red',
   fontWeight: 500,
   marginTop: '-3px',
   fontSize: '1.2rem',
 })
-export const TooltipComponent = styled(Tooltip)<{ left?: string }>`
+const TooltipComponent = styled(Tooltip)<styleProps>`
   top: 3px;
   right: 3px;
   font-size: 2rem;
@@ -192,35 +189,35 @@ export const TooltipComponent = styled(Tooltip)<{ left?: string }>`
       right: auto;
     `};
 `
-export const TooltipLeftComponent = styled(TooltipComponent)`
+const TooltipLeftComponent = styled(TooltipComponent)`
   left: 3px;
   right: auto;
 `
-export const TooltipCenterComponent = styled(Tooltip)({
+const TooltipCenterComponent = styled(Tooltip)({
   display: 'flex',
   fontSize: '2rem',
   justifyContent: 'center',
 })
-export const EditIconComponent = styled(EditIcon)({
+const EditIconComponent = styled(EditIcon)({
   fontSize: '2rem',
   color: '#9996a3',
 })
-export const CloseIconComponent = styled(CloseIcon)({
+const CloseIconComponent = styled(CloseIcon)({
   fontSize: '2rem',
   color: '#9996a3',
 })
-export const DeleteIconComponent = styled(DeleteIcon)({
+const DeleteIconComponent = styled(DeleteIcon)({
   fontSize: '2rem',
   color: '#9996a3',
 })
-export const AddIconComponent = styled(AddCircleIcon)({
+const AddIconComponent = styled(AddCircleIcon)({
   fontSize: '8rem',
   color: '#9996a3',
 })
-export const AvatarImage = ({ colorIndex, children }: AvatarImageProps) => {
+const AvatarImage = ({ colorIndex, children }: AvatarImageProps) => {
   return <StyledAvatar colorindex={colorIndex}>{children}</StyledAvatar>
 }
-export const ContainerInput = styled(Container)<{ error?: boolean }>`
+const ContainerInput = styled(Container)<styleProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -253,16 +250,16 @@ export const ContainerInput = styled(Container)<{ error?: boolean }>`
       }
     `};
 `
-export const CardActionAreaComponent = styled(CardActionArea)({
+const CardActionAreaComponent = styled(CardActionArea)({
   width: '100%',
   height: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 })
-export const FormikComponent = styled(Formik)({})
-export const FormComponent = styled(Form)({})
-export const Footer = styled(Container)({
+const FormikComponent = styled(Formik)({})
+const FormComponent = styled(Form)({})
+const Footer = styled(Container)({
   width: '100%',
   marginTop: 20,
   display: 'flex',
@@ -273,7 +270,7 @@ export const Footer = styled(Container)({
   maxWidth: '100% !important',
   justifyContent: 'space-between',
 })
-export const ContainerIcon = styled(Container)({
+const ContainerIcon = styled(Container)({
   gap: 5,
   display: 'flex',
   alignItems: 'center',
@@ -283,7 +280,7 @@ export const ContainerIcon = styled(Container)({
     marginTop: '0',
   },
 })
-export const ContainerText = styled(Container)({
+const ContainerText = styled(Container)({
   gap: 5,
   display: 'flex',
   alignItems: 'center',
@@ -291,7 +288,34 @@ export const ContainerText = styled(Container)({
   padding: '0px !important',
   justifyContent: 'space-between',
 })
-export const Icon = styled(Avatar)`
+const Icon = styled(Avatar)`
   max-width: 40px;
   border-radius: 0px;
 `
+export {
+  Text,
+  Icon,
+  Title,
+  Footer,
+  TextErro,
+  AvatarImage,
+  BoxComponent,
+  FormComponent,
+  ContainerIcon,
+  ContainerText,
+  MainContainer,
+  CardComponent,
+  LinkComponent,
+  ContainerInput,
+  FormikComponent,
+  AddIconComponent,
+  TooltipComponent,
+  EditIconComponent,
+  CloseIconComponent,
+  DeleteIconComponent,
+  CardContentComponent,
+  TooltipLeftComponent,
+  TooltipCenterComponent,
+  ContainerCardComponent,
+  CardActionAreaComponent,
+}

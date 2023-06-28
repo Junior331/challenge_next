@@ -11,7 +11,7 @@ import { Actions } from '@/state/modalMessage/@types/actions'
 import { DateTimePickerComponent, Input } from '@/components/elements'
 import { hasError } from '@/utils/utils'
 import { carSchema } from '@/validations/carSchema'
-import { PostCarType } from '@/pages/@types'
+import { PostCarType } from '@/@types'
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {

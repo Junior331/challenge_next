@@ -24,7 +24,7 @@ import { Actions } from '@/state/modalMessage/@types/actions'
 import { DateTimePickerComponent, Input } from '@/components/elements'
 import { hasError } from '@/utils/utils'
 import { displacementSchema } from '@/validations/displacementSchema'
-import { PostDisplacementType } from '@/pages/@types'
+import { PostDisplacementType } from '@/@types'
 import { SelectComponent } from '@/components/elements/Select'
 import { optionProps } from '@/components/elements/Select/@types'
 

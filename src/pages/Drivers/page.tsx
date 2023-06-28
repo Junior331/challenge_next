@@ -1,13 +1,13 @@
 import { getDrivers, randomIntFromInterval } from '@/services/service'
-import * as S from '../styled'
+import * as S from '@/styles/styled'
 import { useEffect, useState } from 'react'
 
-import { DriverType } from '../@types'
+import { DriverType } from '../../@types'
 import { ModalAddDrive } from '@/components/modules'
 import { CardSkeleton } from '@/components/modules/Skeletons'
 // import { CardDriverSkeleton } from '@/components/modules/Skeletons/index'
 
-export const Drivers = () => {
+const Drivers = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [drivers, setDrivers] = useState<DriverType[]>([])
@@ -84,3 +84,4 @@ export const Drivers = () => {
     </S.MainContainer>
   )
 }
+export default Drivers

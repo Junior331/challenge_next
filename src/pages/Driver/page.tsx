@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { DriverType, PutDriverType, paramsProps } from '../@types'
-import * as S from '../subStyles'
+import { DriverType, PutDriverType, paramsProps } from '../../@types'
+import * as S from '@/styles/subStyles'
 import {
   deleteDrivers,
   getDriver,
@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation'
 import { hasError } from '@/utils/utils'
 import { driverSchema } from '@/validations/driverSchema'
 
-export const Driver = ({ params }: paramsProps) => {
+const Driver = ({ params }: paramsProps) => {
   const { push } = useRouter()
   const [loading, setLoading] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
@@ -233,3 +233,5 @@ export const Driver = ({ params }: paramsProps) => {
     </S.MainContainer>
   )
 }
+
+export default Driver

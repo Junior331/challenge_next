@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { CarType, PutCarType, paramsProps } from '../@types'
-import * as S from '../subStyles'
+import { CarType, PutCarType, paramsProps } from '../../@types'
+import * as S from '@/styles/subStyles'
 import {
   deleteCars,
   getCar,
@@ -232,3 +232,4 @@ export const Car = ({ params }: paramsProps) => {
     </S.MainContainer>
   )
 }
+export default Car

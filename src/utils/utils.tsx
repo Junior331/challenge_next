@@ -2,7 +2,7 @@ import { FormikErrors, FormikTouched } from 'formik'
 import { parseISO, format } from 'date-fns'
 import React, { useEffect, useRef } from 'react'
 import lottie from 'lottie-web'
-import { LottieAnimationProps } from '@/pages/@types'
+import { LottieAnimationProps } from '@/@types'
 
 export const hasError = (
   errors: FormikErrors<any>,

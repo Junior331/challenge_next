@@ -11,7 +11,7 @@ import {
   PutDisplacementType,
   PutDriverType,
   WeatherType,
-} from '@/pages/@types'
+} from '@/@types'
 import axios from 'axios'
 // import axios from 'axios'
 

@@ -11,7 +11,7 @@ import { Actions } from '@/state/modalMessage/@types/actions'
 import { DateTimePickerComponent, Input } from '@/components/elements'
 import { hasError } from '@/utils/utils'
 import { driverSchema } from '@/validations/driverSchema'
-import { PostDriverType } from '@/pages/@types'
+import { PostDriverType } from '@/@types'
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {

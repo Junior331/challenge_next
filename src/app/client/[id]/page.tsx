@@ -1,4 +1,4 @@
 'use client'
-import { Client } from '@/pages/Client/page'
+import Client from '@/pages/Client/page'
 
 export default Client
